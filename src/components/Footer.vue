@@ -24,7 +24,7 @@
           class="mb-4 text-center"
           cols="12"
         >
-          {{ new Date().getFullYear() }} — <strong>movement</strong>
+          {{ new Date().getFullYear() }} — <strong>hobos</strong>
         </v-col>
       </v-row>
     </div>

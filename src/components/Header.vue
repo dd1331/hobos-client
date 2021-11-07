@@ -8,7 +8,7 @@
       style="position: relative; background:white" flat >
       <div @click="goHome">
         <h1 class="m-pointer red--text text--lighten-1">
-          movement
+          hobos
         </h1>
       </div>
       <v-spacer></v-spacer>
