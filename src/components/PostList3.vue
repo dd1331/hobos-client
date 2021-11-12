@@ -2,7 +2,7 @@
 <div>
   <v-list class="pa-0" v-if="posts">
     <template v-for="(item, index) in posts">
-      <v-list-item :key="item.id" class="px-1"
+      <v-list-item :key="index" class="px-1"
         @click="$router
         .push({path:`/posts/view/${item.id}`, query:{ category: item.category } })"
       >
@@ -30,7 +30,7 @@
       </v-list-item>
       <v-divider
         v-if="index < posts.length - 1"
-        :key="index"
+        :key="index + 'divider'"
       ></v-divider>
     </template>
   </v-list>

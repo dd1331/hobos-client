@@ -1,0 +1,61 @@
+<template>
+  <div>
+    <v-carousel
+      cycle
+      height="300"
+      hide-delimiter-background
+      show-arrows-on-hover
+      interval="1000000"
+    >
+      <v-carousel-item
+        v-for="(page, i) in pages"
+        :key="i"
+      >
+        <div class="">
+          <v-icon class="grey--text text--darken-1 mb-1">
+            mdi-trophy
+          </v-icon>
+          <h3 class="grey--text text--darken-3 d-inline">
+            추천
+          </h3>
+        </div>
+          <div class="mt-3">
+            <Image-Grid :items="page" cols="4" type="recommended"></Image-Grid>
+          </div>
+      </v-carousel-item>
+    </v-carousel>
+  </div>
+</template>
+<script>
+import ImageGrid from '@/components/ImageGrid';
+
+export default {
+  props: ['posts'],
+  data() {
+    return {
+      colors: [
+        'white',
+        'red lighten-1',
+        'indigo',
+        'warning',
+        'pink darken-2',
+        'deep-purple accent-4',
+      ],
+      slides: [
+        'First',
+        'Second',
+      ],
+    };
+  },
+  components: {
+    ImageGrid,
+  },
+  computed: {
+    pages() {
+      const half = Math.ceil(this.posts.length / 2);
+
+      return [this.posts.slice(0, half), this.posts.slice(-half)];
+    },
+  },
+};
+</script>

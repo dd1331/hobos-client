@@ -1,61 +1,50 @@
 <template>
   <div>
     <v-carousel
+      hide-delimiters
+      hide-delimiters-background
       cycle
       height="300"
-      hide-delimiter-background
       show-arrows-on-hover
-      interval="1000000"
+      interval="3000"
+      style="background-color: tomato;"
     >
       <v-carousel-item
-        v-for="(page, i) in pages"
+      transition="fade-transition"
+      reverse-transition="fade-transition"
+        v-for="(post, i) in posts"
         :key="i"
       >
-        <div class="">
-          <v-icon class="grey--text text--darken-1 mb-1">
-            mdi-trophy
-          </v-icon>
-          <h3 class="grey--text text--darken-3 d-inline">
-            추천
-          </h3>
-        </div>
-          <!-- <v-row
-            class="fill-height ma-0"
-            align="center"
-            justify="center"
-          > -->
-          <div class="mt-3">
-
-            <Image-Grid :items="page" cols="4" type="recommended"></Image-Grid>
+        <div style="height:100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        ">
+          <div style="display:block">
+            <h1 style="text-align:center; font-size: 50px;">
+              {{post.emoji}}
+            </h1 >
+            <h1 style="text-align:center; color: white">
+              {{post.title}}
+            </h1>
+            <h4 style="text-align:center; color: white">
+              {{post.subtitle}}
+            </h4>
           </div>
-          <!-- </v-row> -->
+        </div>
       </v-carousel-item>
     </v-carousel>
   </div>
 </template>
 <script>
-import ImageGrid from '@/components/ImageGrid';
 
 export default {
   props: ['posts'],
   data() {
     return {
-      colors: [
-        'white',
-        'red lighten-1',
-        'indigo',
-        'warning',
-        'pink darken-2',
-        'deep-purple accent-4',
-      ],
-      slides: [
-        'First',
-        'Second',
-      ],
     };
   },
   components: {
-    ImageGrid,
   },
   computed: {
     pages() {

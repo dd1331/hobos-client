@@ -1,5 +1,9 @@
 <template>
   <div>
+    <!-- <v-alert :class="this.$vuetify.breakpoint.name === 'xs' ? 'd-none' :'' "
+        class="ma-0" text prominent type="warning">
+        개발자 도구를 이용하여 모바일 화면을 이용해주세요 ㅠㅠ
+    </v-alert> -->
     <v-app-bar class="no-padding bg-white"  :style="wrapper"
       style="position: relative; background:white" flat >
       <div @click="goHome">
@@ -7,7 +11,6 @@
           hobos
         </h1>
       </div>
-        <Menu-Slider v-if="!$router.path"></Menu-Slider>
       <v-spacer></v-spacer>
         <v-icon class="grey--text text--darken-1 mr-2" @click="routeTo('/posts/search')">
           mdi-magnify
@@ -24,6 +27,13 @@
           </span>
         </div>
     </v-app-bar>
+        <div style="border-top: 1px solid; border-bottom: 1px solid"
+          class="grey--text text--lighten-1"
+        >
+          <div :style="wrapper">
+            <Menu-Slider v-if="!$router.path"></Menu-Slider>
+         </div>
+        </div>
   </div>
 </template>
 <script>

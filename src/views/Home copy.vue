@@ -1,16 +1,21 @@
 <template>
   <div class="home">
-    <Home-Grid></Home-Grid>
-    <Home-Cafe-Grid style="padding-top:12px;"></Home-Cafe-Grid>
+    <Home-Carousel :posts="recommendedPosts"></Home-Carousel>
     <div class="mt-4">
-      <h2 class="grey--text text--darken-3 d-inline">
-        🤩 인기
-      </h2>
+      <v-icon class="mb-1">
+        mdi-fire
+      </v-icon>
+      <h3 class="grey--text text--darken-3 d-inline">
+        인기
+      </h3>
     </div>
     <Post-List :posts="popularPosts" category="true"></Post-List>
-    <h2 class="grey--text text--darken-3 d-inline">
-      📈 트렌드
-    </h2>
+    <v-icon class="mb-1">
+        mdi-fire
+    </v-icon>
+    <h3 class="grey--text text--darken-3 d-inline">
+      트렌드
+    </h3>
     <v-container class="d-flex mb-3 pt-0">
       <div>
         <v-chip
@@ -25,18 +30,20 @@
         </v-chip>
       </div>
     </v-container>
-    <h2 class="grey--text text--darken-3 d-inline">
-      🆕 최신
-    </h2>
+    <v-icon class="mb-1">
+      mdi-new-box
+    </v-icon>
+    <h4 class="grey--text text--darken-3 d-inline">
+      최신
+    </h4>
     <Post-List :posts="recentPosts" category="true"></Post-List>
     <Home-News></Home-News>
   </div>
 </template>
 
 <script>
+import HomeCarousel from '@/components/HomeCarousel.vue';
 import HomeNews from '@/components/HomeNews.vue';
-import HomeGrid from '@/components/HomeGrid.vue';
-import HomeCafeGrid from '@/components/home/HomeCafeGrid.vue';
 import PostList from '@/components/PostList3.vue';
 
 export default {
@@ -48,8 +55,7 @@ export default {
   name: 'Home',
   components: {
     HomeNews,
-    HomeGrid,
-    HomeCafeGrid,
+    HomeCarousel,
     PostList,
   },
   data() {
