@@ -6,8 +6,8 @@
       cycle
       height="300"
       show-arrows-on-hover
-      interval="3000"
-      style="background-color: tomato;"
+      interval="8000"
+      style="background-color: #ff7f32;"
     >
       <v-carousel-item
       transition="fade-transition"

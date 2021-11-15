@@ -8,7 +8,7 @@
         >
           <template>
             <div class="d-flex">
-              <p class="my-0 red--text text--accent-1 font-weight-bold text-truncate">
+              <p class="my-0 orange--text text--darken-1 font-weight-bold text-truncate">
                 {{item.title}}
               </p>
               <v-spacer></v-spacer>

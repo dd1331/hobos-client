@@ -1,13 +1,13 @@
 <template>
   <div>
     <v-app-bar class="no-padding bg-white"  :style="wrapper"
-      style="position: relative; background:white" flat >
+      style="position: relative; background:white;" flat >
       <div @click="goHome">
-        <h1 class="m-pointer red--text text--lighten-1">
+        <h1 class="m-pointer" style="color:#ff7f32">
           hobos
         </h1>
       </div>
-        <Menu-Slider v-if="!$router.path"></Menu-Slider>
+      <Menu-Slider v-if="!$router.path && !isMobile"></Menu-Slider>
       <v-spacer></v-spacer>
         <v-icon class="grey--text text--darken-1 mr-2" @click="routeTo('/posts/search')">
           mdi-magnify
@@ -24,6 +24,13 @@
           </span>
         </div>
     </v-app-bar>
+    <div v-if="isMobile" style="border-top: 1px solid #ff7f32; border-bottom: 1px solid"
+          class="grey--text text--lighten-1"
+        >
+          <div :style="wrapper">
+            <Menu-Slider v-if="!$router.path"></Menu-Slider>
+         </div>
+    </div>
   </div>
 </template>
 <script>
@@ -53,7 +60,7 @@ export default {
       return this.$store.getters['auth/getAppUser'];
     },
     isMobile() {
-      return this.$vuetify.breakpoint.mobile;
+      return this.$vuetify.breakpoint.width < 768;
     },
     wrapper() {
       return `margin-left: auto; margin-right: auto; ${this.isMobile ? '' : 'max-width: 70rem;'}`;

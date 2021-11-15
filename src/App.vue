@@ -1,8 +1,8 @@
 <template>
   <v-app>
-    <Header></Header>
+    <Header style="border-bottom:solid 1px #ff7f32"></Header>
     <Home-Carousel v-if="isHome" :posts="posts"></Home-Carousel>
-    <v-container :style="wrapper" style="padding:0">
+    <div :style="wrapper" style="padding: 0 5px 0 5px; width:100%">
       <v-container style="display: flex">
         <v-main :style="innerWrapper">
           <div>
@@ -11,7 +11,7 @@
         </v-main>
         <!-- <Banner v-if="!isMobile"/> -->
       </v-container>
-    </v-container>
+    </div>
     <Footer></Footer>
     <v-snackbar v-model="snackbar">
       {{ message }}
@@ -48,7 +48,9 @@ export default {
       snackbar: false,
       message: '',
       posts: [
-        { emoji: '👩‍💻', title: 'Go hobos to local', subtitle: 'this is seoul' },
+        { emoji: '👩‍💻', title: 'Go hobo to local', subtitle: 'get some relax' },
+        { emoji: '👩‍🌾', title: '여기가 고흥', subtitle: 'this is 고흥' },
+        { emoji: '🧐', title: 'meet people to inspired', subtitle: 'they\'re wating for you' },
         { emoji: '🏬', title: '이것이 서울', subtitle: 'this is seoul' },
       ],
 

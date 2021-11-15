@@ -30,7 +30,7 @@
                   </div>
                   <div style="margin:auto; margin-right:12px;">
                     <h4 style="text-align:center; color:white; ">
-                      미세먼지
+                      {{item.topRight}}
                     </h4>
                   </div>
                 </div>
@@ -47,12 +47,12 @@
                 <div style="display:flex; height:20%">
                   <div style="margin-left:12px;">
                     <h4 style="text-align:center; color:white; ">
-                      18도
+                      {{item.bottomLeft}}
                     </h4>
                   </div>
                   <div style="margin:auto; margin-right:12px;">
                     <h4 style="text-align:center; color:white; ">
-                      25만
+                      {{item.bottomRight}}
                     </h4>
                     </div>
                 </div>
@@ -66,17 +66,16 @@
                 style="display:block; padding-top:1rem;"
               >
                 <div style="width:87%; margin:auto">
-                  <div v-for="(item, index) in test" :key="index"
+                  <div v-for="(score, index) in item.scores" :key="index"
                     style="display:flex; align-items: center; margin-top:3px;">
                     <div style="width:50%">
-                      {{item.icon}} {{item.title}}
+                      {{score.icon}} {{score.title}}
                     </div>
                     <div style="width:50%">
                       <v-progress-linear
-                        :value="item.percentage"
+                        :value="score.percentage"
                         height="15"
-                        striped
-                        color="deep-orange"
+                        :color="getColor(score.percentage)"
                       />
                     </div>
                   </div>
@@ -87,28 +86,39 @@
         </div>
       </v-col>
     </v-row>
+    <Home-Dialog :id="1" :isActive="isActive" @deactivate="isActive = false"/>
   </div>
 </template>
 <script>
+import HomeDialog from '@/components/home/HomeDialog';
+
 export default {
   props: ['items', 'cols'],
+  components: {
+    HomeDialog,
+  },
   data() {
     return {
       overlay: false,
       overlayIndex: -1,
-      test: [
-        { icon: '⭐️', title: '총점', percentage: 50 },
-        { icon: '💰', title: '비용', percentage: 30 },
-        { icon: '🖥', title: '인터넷', percentage: 10 },
-        { icon: '☀️', title: '날씨', percentage: 90 },
-        { icon: '⏱', title: '시간', percentage: 5 },
-      ],
+      isActive: false,
     };
   },
   methods: {
+    click(item) {
+      console.log('click -> item', item);
+      this.isActive = true;
+    },
     openUrl(url) {
       window.open(url);
     },
+    getColor(percentage) {
+      if (percentage > 80) return '#43A047';
+      if (percentage > 50) return '#FBC02D';
+      return '#F44336';
+    },
+  },
+  computed: {
   },
 };
 </script>

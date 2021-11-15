@@ -4,18 +4,17 @@
       class="slider-tabs"
       dark
       background-color="white"
-      slider-color="red--text text--lighten-3"
       :optional="categoryId === -1"
       show-arrows
     >
     <!-- TODO check what v-tabs-slider is for -->
       <!-- <v-tabs-slider color="primary lighten-3"></v-tabs-slider> -->
       <v-tab
-        v-for="category in categories"
+        v-for="(category, index) in categories"
         :key="category.id"
         @click="sendTo(category)"
       >
-      <span class="black--text">
+      <span class="black--text" :style="categoryId === index ? 'font-weight: bold;' : ''">
         {{ category.koTitle }}
       </span>
       </v-tab>

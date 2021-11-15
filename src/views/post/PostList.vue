@@ -11,7 +11,7 @@
         {{hashtagTitle}}
       </v-chip>
       <v-spacer></v-spacer>
-      <v-btn v-if="!isNews" small class="red accent-2"
+      <v-btn v-if="!isNews" small class="orange darken-1"
         @click="sendTo(currentCategory.title)">
         <span class="white--text ">글쓰기</span>
       </v-btn>
