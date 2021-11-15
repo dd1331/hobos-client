@@ -42,6 +42,9 @@
           <v-tab-item>
             <DialogList :list="prosAndConsList"/>
           </v-tab-item>
+          <v-tab-item>
+            <Visitor-Chart/>
+          </v-tab-item>
         </v-tabs-items>
       </v-card>
     </v-dialog>
@@ -50,10 +53,11 @@
 <script>
 import Scores from '@/components/Scores';
 import DialogList from '@/components/DialogList';
+import VisitorChart from '@/components/VisitorChart';
 
 export default {
   props: ['isActive', 'id'],
-  components: { Scores, DialogList },
+  components: { Scores, DialogList, VisitorChart },
   data() {
     return {
       dialog: false,
@@ -67,13 +71,13 @@ export default {
       items: [
         { tab: '점수', content: 'Tab 1 Content' },
         { tab: '가이드', content: 'Tab 2 Content' },
-        { tab: '사람', content: 'Tab 3 Content' },
         { tab: '비용', content: 'Tab 4 Content' },
         { tab: '장단', content: 'Tab 5 Content' },
+        { tab: '트렌드', content: 'Tab 9 Content' },
         { tab: '사진', content: 'Tab 6 Content' },
+        { tab: '사람', content: 'Tab 3 Content' },
         { tab: '리뷰', content: 'Tab 7 Content' },
         { tab: '날씨', content: 'Tab 8 Content' },
-        { tab: '트렌드', content: 'Tab 9 Content' },
         { tab: '인구', content: 'Tab 10 Content' },
         { tab: '채팅', content: 'Tab 10 Content' },
         { tab: '주변', content: 'Tab 10 Content' },
