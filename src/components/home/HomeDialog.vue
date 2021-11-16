@@ -1,10 +1,9 @@
 <template>
     <v-dialog
-      :value="isActive" @input="$emit('deactivate')"
+      :value="isActive" @input="onInput"
       width="1120px"
-      min-height="895px"
     >
-      <v-card class="rounded-xl">
+      <v-card class="rounded-xl" style="height:895px">
         <v-img
           class="white--text align-center"
           height="200px"
@@ -18,6 +17,7 @@
           v-model="tab"
           background-color="#ff7f32"
           dark
+          :center-active="true"
         >
           <v-tab
             active-class="font-weight-bold"
@@ -29,21 +29,24 @@
         </v-tabs>
 
         <v-tabs-items v-model="tab" style="padding:20px;">
-          <v-tab-item>
+          <v-tab-item :transition="false">
             <Scores/>
             <DialogList/>
           </v-tab-item>
-          <v-tab-item>
+          <v-tab-item :transition="false">
             <DialogList :list="guideList"/>
           </v-tab-item>
-          <v-tab-item>
+          <v-tab-item :transition="false">
             <DialogList :list="costOrLivingList"/>
           </v-tab-item>
-          <v-tab-item>
+          <v-tab-item :transition="false">
             <DialogList :list="prosAndConsList"/>
           </v-tab-item>
-          <v-tab-item>
+          <v-tab-item :transition="false">
             <Visitor-Chart/>
+          </v-tab-item>
+          <v-tab-item :transition="false">
+            <Image-List/>
           </v-tab-item>
         </v-tabs-items>
       </v-card>
@@ -54,10 +57,22 @@
 import Scores from '@/components/Scores';
 import DialogList from '@/components/DialogList';
 import VisitorChart from '@/components/VisitorChart';
+import ImageList from '@/components/ImageList';
 
 export default {
   props: ['isActive', 'id'],
-  components: { Scores, DialogList, VisitorChart },
+  components: {
+    Scores,
+    DialogList,
+    VisitorChart,
+    ImageList,
+  },
+  methods: {
+    onInput() {
+      this.tab = 0;
+      this.$emit('deactivate');
+    },
+  },
   data() {
     return {
       dialog: false,

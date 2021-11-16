@@ -15,6 +15,7 @@
           <v-progress-linear
             :value="score.percentage"
             height="20"
+            rounded
             :color="getProgressBarColor(score.percentage)"
           />
         </div>

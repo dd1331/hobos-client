@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     style(index) {
-      return `${index % 2 === 0 ? 'border-right:solid 1px #C0C0C0;' : ''}${index === this.list.length - 1 ? 'border-bottom:0' : ''}`;
+      return `${index % 2 === 0 ? 'border-right:solid 1px #C0C0C0;' : ''}`;
     },
   },
 };
