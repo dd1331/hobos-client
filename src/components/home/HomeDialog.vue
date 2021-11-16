@@ -51,6 +51,9 @@
           <v-tab-item :transition="false">
             <Weather-Table/>
           </v-tab-item>
+          <v-tab-item :transition="false">
+            <Characteristics/>
+          </v-tab-item>
         </v-tabs-items>
       </v-card>
     </v-dialog>
@@ -62,6 +65,7 @@ import DialogList from '@/components/DialogList';
 import VisitorChart from '@/components/VisitorChart';
 import ImageList from '@/components/ImageList';
 import WeatherTable from '@/components/WeatherTable';
+import Characteristics from '@/components/Characteristics';
 
 export default {
   props: ['isActive', 'id'],
@@ -71,6 +75,7 @@ export default {
     VisitorChart,
     ImageList,
     WeatherTable,
+    Characteristics,
   },
   methods: {
     onInput() {
@@ -96,9 +101,9 @@ export default {
         { tab: '트렌드', content: 'Tab 9 Content' },
         { tab: '사진', content: 'Tab 6 Content' },
         { tab: '날씨', content: 'Tab 8 Content' },
+        { tab: '사람들', content: 'Tab 10 Content' },
         { tab: '사람', content: 'Tab 3 Content' },
         { tab: '리뷰', content: 'Tab 7 Content' },
-        { tab: '인구', content: 'Tab 10 Content' },
         { tab: '채팅', content: 'Tab 10 Content' },
         { tab: '주변', content: 'Tab 10 Content' },
         { tab: '코워킹', content: 'Tab 10 Content' },
