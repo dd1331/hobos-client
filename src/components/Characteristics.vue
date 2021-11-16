@@ -27,7 +27,7 @@ export default {
   data() {
     return {
       chartData: [
-        ['ㅅㄷㄴㅅ', 'sㅅㄷㄴㅅ'],
+        ['string', 'sㅅㄷㄴㅅ'],
         ['1', 4],
         ['2', 3],
         ['3', 31],

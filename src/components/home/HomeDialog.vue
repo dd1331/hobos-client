@@ -28,31 +28,34 @@
           </v-tab>
         </v-tabs>
 
-        <v-tabs-items v-model="tab" style="padding:20px;">
-          <v-tab-item :transition="false">
+        <v-tabs-items v-model="tab">
+          <v-tab-item style="padding:20px;" :transition="false">
             <Scores/>
             <DialogList/>
           </v-tab-item>
-          <v-tab-item :transition="false">
+          <v-tab-item style="padding:20px;" :transition="false">
             <DialogList :list="guideList"/>
           </v-tab-item>
-          <v-tab-item :transition="false">
+          <v-tab-item style="padding:20px;" :transition="false">
             <DialogList :list="costOrLivingList"/>
           </v-tab-item>
-          <v-tab-item :transition="false">
+          <v-tab-item style="padding:20px;" :transition="false">
             <DialogList :list="prosAndConsList"/>
           </v-tab-item>
-          <v-tab-item :transition="false">
+          <v-tab-item style="padding:20px;" :transition="false">
             <Visitor-Chart/>
           </v-tab-item>
-          <v-tab-item :transition="false">
+          <v-tab-item style="padding:20px;" :transition="false">
             <Image-List/>
           </v-tab-item>
-          <v-tab-item :transition="false">
+          <v-tab-item style="padding:20px;" :transition="false">
             <Weather-Table/>
           </v-tab-item>
-          <v-tab-item :transition="false">
+          <v-tab-item style="padding:20px;" :transition="false">
             <Characteristics/>
+          </v-tab-item>
+          <v-tab-item :transition="false">
+            <Naver-Map  style="height:600px;"/>
           </v-tab-item>
         </v-tabs-items>
       </v-card>
@@ -66,6 +69,7 @@ import VisitorChart from '@/components/VisitorChart';
 import ImageList from '@/components/ImageList';
 import WeatherTable from '@/components/WeatherTable';
 import Characteristics from '@/components/Characteristics';
+import NaverMap from '@/components/NaverMap';
 
 export default {
   props: ['isActive', 'id'],
@@ -76,6 +80,7 @@ export default {
     ImageList,
     WeatherTable,
     Characteristics,
+    NaverMap,
   },
   methods: {
     onInput() {
@@ -101,11 +106,11 @@ export default {
         { tab: '트렌드', content: 'Tab 9 Content' },
         { tab: '사진', content: 'Tab 6 Content' },
         { tab: '날씨', content: 'Tab 8 Content' },
-        { tab: '사람들', content: 'Tab 10 Content' },
+        { tab: '특징', content: 'Tab 10 Content' },
+        { tab: '주변', content: 'Tab 10 Content' },
         { tab: '사람', content: 'Tab 3 Content' },
         { tab: '리뷰', content: 'Tab 7 Content' },
         { tab: '채팅', content: 'Tab 10 Content' },
-        { tab: '주변', content: 'Tab 10 Content' },
         { tab: '코워킹', content: 'Tab 10 Content' },
         { tab: '비디오', content: 'Tab 10 Content' },
         { tab: '원격근무', content: 'Tab 10 Content' },

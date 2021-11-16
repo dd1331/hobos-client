@@ -7,7 +7,7 @@
           hobos
         </h1>
       </div>
-      <Menu-Slider v-if="!$router.path && !isMobile"></Menu-Slider>
+      <Menu-Slider v-if="!$router.path && !isMobile" style="margin-left: 20px"></Menu-Slider>
       <v-spacer></v-spacer>
         <v-icon class="grey--text text--darken-1 mr-2" @click="routeTo('/posts/search')">
           mdi-magnify
