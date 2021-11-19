@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import VUE_APP_SERVER_HOST from '@/../env-config';
 //
 
@@ -20,12 +21,26 @@ export default {
   },
   actions: {
     async loginWithNaver({ commit }, payload) {
-      const { data } = await this.$axios.post('http://192.168.35.219:3000/auth/naver', { ...payload });
+      const { accessToken } = payload;
+
+      localStorage.setItem('accessToken', accessToken);
+
+      const { data } = await this.$axios.get(`${VUE_APP_SERVER_HOST}/auth/login`);
+
+      if (!data) return false;
       commit('SET_USER', data);
-      // TODO refactor
-      this.$axios.defaults.headers.common.Authorization = `Bearer ${data.accessToken}`;
+
+      return true;
     },
     async logout({ commit }) {
+      this.$axios.interceptors.request.use(
+        (config) => {
+          config.headers.Authorization = null;
+          return config;
+        },
+        (error) => Promise.reject(error),
+      );
+      localStorage.removeItem('accessToken');
       commit('REMOVE_USER');
     },
     async loginWithJwt({ commit }, payload) {

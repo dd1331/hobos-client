@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import Vue from 'vue';
 import axios from 'axios';
 import { config } from 'dotenv';
@@ -24,6 +25,19 @@ Vue.prototype.$axios = axios;
 // Vue.prototype.$socket = socket;
 
 store.$axios = axios;
+
+axios.interceptors.request.use(
+  (axiosConfig) => {
+    const accessToken = localStorage.getItem('accessToken');
+
+    if (accessToken) {
+      axiosConfig.headers.Authorization = `Bearer ${accessToken}`;
+    }
+
+    return axiosConfig;
+  },
+  (error) => Promise.reject(error),
+);
 new Vue({
   router,
   store,
