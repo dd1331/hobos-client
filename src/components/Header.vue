@@ -24,7 +24,7 @@
           </span>
         </div>
     </v-app-bar>
-    <div v-if="isMobile" style="border-top: 1px solid #ff7f32; border-bottom: 1px solid"
+    <div v-if="isMobile" style="border-top: 1px solid #ff7f32;"
           class="grey--text text--lighten-1"
         >
           <div :style="wrapper">

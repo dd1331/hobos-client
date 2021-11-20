@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="text-align:center">
     <v-card class="d-flex">
       <div class="d-flex">
         <v-avatar
@@ -26,7 +26,7 @@
       </div>
     </v-card>
     <v-card>
-      <v-container class="d-flex">
+      <div class="d-flex">
         <v-container>
           <p>
             글
@@ -51,11 +51,12 @@
           </p>
           {{profile.dislikeSum}}개
         </v-container>
-      </v-container>
-      <!-- <v-container class="d-flex">
+      </div>
+      <v-divider style="margin: 10px 0 10px 0"></v-divider>
+      <div class="d-flex">
         <v-container>
           <p>
-            팔로워
+            찜
           </p>
           231
         </v-container>
@@ -65,7 +66,13 @@
           </p>
           13
         </v-container>
-      </v-container> -->
+        <v-container>
+          <p>
+            팔로워
+          </p>
+          231
+        </v-container>
+      </div>
     </v-card>
   </div>
 </template>

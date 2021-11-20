@@ -1,59 +1,75 @@
 <template>
-  <div>
-    <h1 class="mb-6">회원가입</h1>
-    <v-form
-      ref="form"
-      v-model="valid"
-      lazy-validation
-    >
-      <v-text-field
-        v-model="phone"
-        :counter="11"
-        :rules="phoneRules"
-        label="Phone"
-        solo
-        dense
-        required
-        @keyup.enter="signup"
-      ></v-text-field>
-
-      <v-text-field
-        v-model="password"
-        type="password"
-        :counter="11"
-        :rules="passwordRules"
-        label="Password"
-        solo
-        dense
-        required
-        @keyup.enter="signup"
-      ></v-text-field>
-      <v-btn
-        :disabled="!valid"
-        color="success"
-        class="pa-2 my-5"
-        @click="signup"
-        min-width="100%"
-      >
-        가입
-      </v-btn>
-      <v-btn
-        color="warning"
-        class="pa-2"
-        min-width="100%"
-        @click="$router.push('/')"
-      >
-        취소
-      </v-btn>
-    </v-form>
-      <!-- <div id="naverIdLogin">
+  <div style="display:flex; justify-content:center; align-items: center;">
+    <div :style="wrapper">
+      <h1 class="mb-6">회원가입</h1>
+      <v-row no-gutters>
+        <v-col
+          cols="6"
+          sm="6"
+        >
+          <div id="naver_id_login" />
+        </v-col>
+        <v-col
+          cols="6"
+          sm="6"
+        >
+        <a id="custom-login-btn" href="javascript:loginWithKakao()"
+          style="">
+          <img
+            src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg"
+            width="100%"
+          />
+        </a>
+        </v-col>
+      </v-row>
+      <div style="display:flex; align-items: center; margin: 30px 0 30px 0">
+        <v-divider style="margin-right: 20px"></v-divider>
+        <span>OR</span>
+        <v-divider style="margin-left: 20px"></v-divider>
       </div>
-      <v-btn @click="test">teset</v-btn>
-      <v-btn @click="test2">google</v-btn>
-      <a href="${VUE_APP_SERVER_HOST}/auth/google">google</a> -->
+      <v-form
+        ref="form"
+        v-model="valid"
+        lazy-validation
+      >
+        <v-text-field
+          v-model="phone"
+          :counter="11"
+          :rules="phoneRules"
+          label="Phone"
+          solo
+          dense
+          required
+          @keyup.enter="signup"
+        ></v-text-field>
+
+        <v-text-field
+          v-model="password"
+          type="password"
+          :counter="11"
+          :rules="passwordRules"
+          label="Password"
+          solo
+          dense
+          required
+          @keyup.enter="signup"
+        ></v-text-field>
+        <v-btn
+          :disabled="!valid"
+          color="#ff7f32"
+          class="pa-2 mt-4 mb-7"
+          @click="signup"
+          min-width="100%"
+          style="color:white"
+        >
+          가입
+        </v-btn>
+      </v-form>
+    </div>
   </div>
 </template>
 <script>
+/* eslint-disable new-cap */
 import VUE_APP_SERVER_HOST from '@/../env-config';
 
 export default {
@@ -71,6 +87,15 @@ export default {
     ],
     naverLogin: null,
   }),
+  computed: {
+    wrapper() {
+      const width = this.isMobile ? '100' : '45';
+      return `width:${width}%; padding:15% 0 20% 0`;
+    },
+    isMobile() {
+      return this.$vuetify.breakpoint.mobile;
+    },
+  },
 
   methods: {
     async signup() {
@@ -85,17 +110,6 @@ export default {
         if (loggedIn) this.$router.push('/');
       }
     },
-    async test() {
-      // const { data } = await this.$axios.get('http://192.168.35.123:3000/auth/naver');
-      // const { data } = await this.$axios.get('http://192.168.35.21:3000/auth/naver');
-      const { data } = await this.$axios.post(`${VUE_APP_SERVER_HOST}/auth/naver`);
-      console.log(data);
-    },
-    async test2() {
-      // const { data } = await this.$axios.get('http://192.168.35.123:3000/auth/google');
-      const { data } = await this.$axios.get(`${VUE_APP_SERVER_HOST}/auth/google`);
-      console.log(data);
-    },
     validate() {
       this.$refs.form.validate();
     },
@@ -108,17 +122,12 @@ export default {
   },
   mounted() {
     // eslint-disable-next-line no-undef
-    // this.naverLogin = new naver.LoginWithNaverId(
-    //   {
-    //     clientId: 'ag_B0_vLXpvrgG1J5Upp',
-    //     callbackUrl: 'http://192.168.35.102:8080/auth/naver',
-    //     isPopup: false, /* 팝업을 통한 연동처리 여부 */
-    //     callbackHandle: false,
-    //     loginButton: { color: 'green', type: 3, height: 60 }, /* 로그인 버튼의 타입을 지정 */
-    //   },
-    // );
-    // console.log('this.naverLogin', this.naverLogin);
-    // this.naverLogin.init();
+    const naverLogin = new naver_id_login(process.env.VUE_APP_NAVER_CLIENT_ID,
+      process.env.VUE_APP_NAVER_LOGIN_CALLBACK_URL);
+    const state = naverLogin.getUniqState();
+    naverLogin.setButton('green', 3, this.isMobile ? 35.5 : 51);
+    naverLogin.setState(state);
+    naverLogin.init_naver_id_login();
   },
 };
 </script>

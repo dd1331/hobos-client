@@ -45,9 +45,9 @@ export default {
     },
   },
   watch: {
-    // currentCategory(category) {
-    //   this.categoryId = category.id ? category.id - 1 : -1;
-    // },
+    currentCategory(category) {
+      if (!category.title) this.categoryId = -1;
+    },
   },
   methods: {
     sendTo(category) {
@@ -57,10 +57,6 @@ export default {
 
       this.$router.push(`/posts/list/${category.title}`);
     },
-  },
-  updated() {
-    this.categoryId = this.categories
-      .findIndex((category) => category.title === this.currentCategory.title);
   },
 };
 </script>
