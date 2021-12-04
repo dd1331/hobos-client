@@ -44,7 +44,8 @@
                     </h4>
                   </div>
                 </div>
-                <div style="display:flex; height:20%">
+                <div style="display:flex; height:20%; justify-content: center;
+                  align-items: center;">
                   <div style="margin-left:12px;">
                     <h4 style="text-align:center; color:white; ">
                       {{item.bottomLeft}}

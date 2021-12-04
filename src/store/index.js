@@ -7,6 +7,7 @@ import comment from './modules/comment';
 import common from './modules/common';
 import hashtag from './modules/hashtag';
 import chat from './modules/chat';
+import local from './modules/local';
 
 Vue.use(Vuex);
 
@@ -25,6 +26,7 @@ const store = new Vuex.Store({
     common,
     hashtag,
     chat,
+    local,
   },
 });
 
