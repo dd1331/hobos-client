@@ -46,8 +46,8 @@ export default {
     async loginWithJwt({ commit }, payload) {
       const result = await this.$axios.post(`${VUE_APP_SERVER_HOST}/auth/jwt`, payload).then((res) => {
         if (res.data) {
+          localStorage.setItem('accessToken', res.data.accessToken);
           commit('SET_USER', res.data);
-          this.$axios.defaults.headers.common.Authorization = `Bearer ${res.data.accessToken}`;
           return res.data;
         }
         return false;
