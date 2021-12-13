@@ -12,6 +12,7 @@ import Profile from '@/views/user/Profile.vue';
 import Matcher from '@/views/Matcher.vue';
 import Callback from '@/views/Callback.vue';
 import CityList from '@/views/CityList.vue';
+import CafeList from '@/views/CafeList.vue';
 import store from '../store';
 
 Vue.use(VueRouter);
@@ -31,6 +32,11 @@ const routes = [
     path: '/city',
     name: 'City',
     component: CityList,
+  },
+  {
+    path: '/cafe',
+    name: 'Cafe',
+    component: CafeList,
   },
   {
     path: '/signup',

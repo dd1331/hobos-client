@@ -38,10 +38,10 @@ import HomeNews from '@/components/HomeNews.vue';
 import HomeGrid from '@/components/HomeGrid.vue';
 import HomeCafeGrid from '@/components/home/HomeCafeGrid.vue';
 import PostList from '@/components/PostList3.vue';
-import cityMixins from '@/mixins/cityMixins';
+import gridMixins from '@/mixins/gridMixins';
 
 export default {
-  mixins: [cityMixins],
+  mixins: [gridMixins],
   methods: {
     search(hashtag) {
       this.$router.push({ path: 'posts/list/all', query: { hashtagId: hashtag.id, hashtagTitle: hashtag.title } });
@@ -73,9 +73,15 @@ export default {
       return this.$store.getters['hashtag/getPopularHashtags'];
     },
     cityRanking() {
-      const cities = this.$store.getters['local/getCityRanking'];
-      return cities.map((city) => this.format4imageGrid(city));
+      const cities = this.$store.getters['local/getCityRanking'].map((city) => this.format4cityGrid(city));
+
+      if (this.isMobile) return cities.slice(0, 6);
+      return cities;
     },
+    isMobile() {
+      return this.$vuetify.breakpoint.mobile;
+    },
+
   },
   async created() {
     await this.$store.dispatch('post/fetchRecommendedPost');

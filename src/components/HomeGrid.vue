@@ -12,7 +12,7 @@
         전체보기
       </div>
     </div>
-    <Image-Grid :items="items" cols="4"></Image-Grid>
+    <Image-Grid :items="items" :cols="cols"></Image-Grid>
   </div>
 </template>
 <script>
@@ -23,6 +23,14 @@ export default {
   data() {
     return {
     };
+  },
+  computed: {
+    isMobile() {
+      return this.$vuetify.breakpoint.mobile;
+    },
+    cols() {
+      return this.isMobile ? 6 : 4;
+    },
   },
   components: {
     ImageGrid,

@@ -38,11 +38,11 @@
     </section>
     <v-divider class="my-3"></v-divider>
     <section>
-      <div>
+      <div style="margin-top:2rem; margin-bottom:2rem">
         <v-img v-if="post.files[0]" :src="post.files[0].url"></v-img>
         {{post.content}}
       </div>
-      <div class="justify-center d-flex ml-n4">
+      <v-container class="justify-center d-flex ml-n4">
         <v-btn icon :color="likeStatus && likeStatus !== null ? 'blue lighten-1' : ''">
           <v-icon
             @click="likePost">
@@ -61,7 +61,7 @@
         <span class="mt-1">
           {{dislikes.length}}
         </span>
-      </div>
+      </v-container>
     </section>
     <v-divider class="my-6"></v-divider>
     <section>

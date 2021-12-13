@@ -17,8 +17,7 @@ export default {
   },
   computed: {
     items() {
-      const cities = this.$store.getters['local/getCityRanking'];
-      return cities.map((city) => this.format4cityGrid(city));
+      return this.format4cafeGrid();
     },
     isMobile() {
       return this.$vuetify.breakpoint.mobile;
@@ -26,9 +25,6 @@ export default {
     cols() {
       return this.isMobile ? 6 : 4;
     },
-  },
-  async created() {
-    await this.$store.dispatch('local/fetchCityRanking', { take: 30 });
   },
 };
 </script>
