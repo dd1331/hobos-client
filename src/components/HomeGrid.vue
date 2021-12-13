@@ -5,7 +5,9 @@
       <div style="margin-left:auto;
         margin-right:0; display: flex;
         justify-content: center;
-        align-items: center;"
+        align-items: center;
+        cursor:pointer;"
+        @click="$router.push('/city')"
       >
         전체보기
       </div>

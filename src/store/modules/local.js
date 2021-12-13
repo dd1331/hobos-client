@@ -11,8 +11,9 @@ export default {
     },
   },
   actions: {
-    async fetchCityRanking({ commit }) {
-      const { data } = await this.$axios.get(`${VUE_APP_SERVER_HOST}/locals/ranking/city`);
+    async fetchCityRanking({ commit }, payload) {
+      const { data } = await this.$axios.get(`${VUE_APP_SERVER_HOST}/locals/ranking/city`, { params: payload });
+
       commit('setCityRanking', data);
     },
   },

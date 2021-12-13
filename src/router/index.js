@@ -11,6 +11,7 @@ import PostSearch from '@/views/post/PostSearch.vue';
 import Profile from '@/views/user/Profile.vue';
 import Matcher from '@/views/Matcher.vue';
 import Callback from '@/views/Callback.vue';
+import CityList from '@/views/CityList.vue';
 import store from '../store';
 
 Vue.use(VueRouter);
@@ -25,6 +26,11 @@ const routes = [
     path: '/callback',
     name: 'Callback',
     component: Callback,
+  },
+  {
+    path: '/city',
+    name: 'City',
+    component: CityList,
   },
   {
     path: '/signup',
