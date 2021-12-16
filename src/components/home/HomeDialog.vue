@@ -10,7 +10,7 @@
           src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
         >
           <div style="display:flex; justify-content:center; align-items: center;">
-            <h1>고흥</h1>
+            <h1>{{localDetail.cityName}}</h1>
           </div>
         </v-img>
         <v-tabs
@@ -55,7 +55,7 @@
             <Characteristics/>
           </v-tab-item>
           <v-tab-item :transition="false">
-            <Naver-Map  style="height:600px;"/>
+            <Naver-Map style="height:600px;" :cityCode="cityCode"/>
           </v-tab-item>
         </v-tabs-items>
       </v-card>
@@ -72,7 +72,7 @@ import Characteristics from '@/components/Characteristics';
 import NaverMap from '@/components/NaverMap';
 
 export default {
-  props: ['isActive', 'id'],
+  props: ['isActive', 'cityCode'],
   components: {
     Scores,
     DialogList,
@@ -86,6 +86,16 @@ export default {
     onInput() {
       this.tab = 0;
       this.$emit('deactivate');
+    },
+  },
+  watch: {
+    async cityCode(cityCode) {
+      await this.$store.dispatch('local/fetchLocalDetail', { cityCode });
+    },
+  },
+  computed: {
+    localDetail() {
+      return this.$store.getters['local/getLocalDetail']; // return this.$store.getters['post/getPopularPosts'];
     },
   },
   data() {

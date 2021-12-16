@@ -11,9 +11,9 @@ const gridMixins = {
         thumbnail: thumbnails[Math.floor(Math.random() * (5 - 0) + 0)],
         title: city.cityName,
         subtitle: city.provinceName,
-        topRight: `미세먼지: ${city.pm10Value} pm`,
-        bottomLeft: `온도: ${city.temp}`,
-        bottomRight: `${city.description}`,
+        topRight: `미세먼지: ${city.pm10Value || '측정중'} pm`,
+        bottomLeft: `온도: ${city.temp || '측정중'}`,
+        bottomRight: `${city.description || '측정중'}`,
         scores: [
           { icon: '⭐️', title: '총점', percentage: 55 },
           { icon: '💰', title: '비용', percentage: 30 },

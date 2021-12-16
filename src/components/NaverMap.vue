@@ -12,9 +12,14 @@ export default {
     return {
     };
   },
+  computed: {
+    localDetail() {
+      return this.$store.getters['local/getLocalDetail']; // return this.$store.getters['post/getPopularPosts'];
+    },
+  },
   beforeMount() {
     naver.maps.Service.geocode({
-      query: '대현동90-26',
+      query: `${this.localDetail.provinceName} ${this.localDetail.cityName}`,
     }, (status, response) => {
       if (status !== naver.maps.Service.Status.OK) {
         return alert('Something wrong!');
@@ -27,7 +32,7 @@ export default {
       // eslint-disable-next-line no-new
       const map = new naver.maps.Map('map', {
         center: new naver.maps.LatLng(y, x),
-        zoom: 16,
+        zoom: 15,
       });
       const contentString = `<div class="iw_inner">
         <h3>우리집</h3>
@@ -42,7 +47,8 @@ export default {
       const marker = new naver.maps.Marker({
         position: new naver.maps.LatLng(y, x),
         map,
-      }); const infowindow = new naver.maps.InfoWindow({
+      });
+      const infowindow = new naver.maps.InfoWindow({
         content: contentString,
         maxWidth: 200,
         borderColor: 'tomato',

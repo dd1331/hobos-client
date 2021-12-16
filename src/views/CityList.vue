@@ -28,7 +28,7 @@ export default {
     },
   },
   async created() {
-    await this.$store.dispatch('local/fetchCityRanking', { take: 30 });
+    await this.$store.dispatch('local/fetchCityRanking', { take: 3000 });
   },
 };
 </script>

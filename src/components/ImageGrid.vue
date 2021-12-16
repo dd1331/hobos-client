@@ -87,7 +87,7 @@
         </div>
       </v-col>
     </v-row>
-    <Home-Dialog :id="1" :isActive="isActive" @deactivate="isActive = false"/>
+    <Home-Dialog :cityCode="cityCode" :isActive="isActive" @deactivate="isActive = false" />
   </div>
 </template>
 <script>
@@ -103,12 +103,14 @@ export default {
       overlay: false,
       overlayIndex: -1,
       isActive: false,
+      cityCode: -1,
     };
   },
   methods: {
     click(item) {
       console.log('click -> item', item);
       this.isActive = true;
+      this.cityCode = item.id;
     },
     openUrl(url) {
       window.open(url);
