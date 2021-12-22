@@ -17,7 +17,8 @@ export default {
   },
   computed: {
     items() {
-      return this.format4cafeGrid();
+      const cafes = this.$store.getters['cafe/getCafeRanking'];
+      return cafes.map((cafe) => this.format4cafeGrid(cafe));
     },
     isMobile() {
       return this.$vuetify.breakpoint.mobile;
@@ -25,6 +26,9 @@ export default {
     cols() {
       return this.isMobile ? 6 : 4;
     },
+  },
+  async created() {
+    await this.$store.dispatch('cafe/fetchCafeRanking', { take: 21 });
   },
 };
 </script>

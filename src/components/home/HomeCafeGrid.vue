@@ -12,7 +12,7 @@
         전체보기
       </div>
     </div>
-    <Image-Grid :items="items" :cols="cols"></Image-Grid>
+    <Image-Grid :items="cafes" :cols="cols"></Image-Grid>
   </div>
 </template>
 <script>
@@ -40,6 +40,12 @@ export default {
     cols() {
       return this.isMobile ? 4 : 3;
     },
+    cafes() {
+      return this.$store.getters['cafe/getCafeRanking'].map((cafe) => this.format4cafeGrid(cafe));
+    },
+  },
+  async created() {
+    await this.$store.dispatch('cafe/fetchCafeRanking');
   },
 };
 </script>

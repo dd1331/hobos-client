@@ -8,6 +8,7 @@ import common from './modules/common';
 import hashtag from './modules/hashtag';
 import chat from './modules/chat';
 import local from './modules/local';
+import cafe from './modules/cafe';
 
 Vue.use(Vuex);
 
@@ -27,6 +28,7 @@ const store = new Vuex.Store({
     hashtag,
     chat,
     local,
+    cafe,
   },
 });
 
