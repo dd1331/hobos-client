@@ -57,6 +57,9 @@
           <v-tab-item :transition="false">
             <Naver-Map style="height:600px;" :cityCode="cityCode"/>
           </v-tab-item>
+          <v-tab-item style="padding:20px;" :transition="false">
+            <LocalReview/>
+          </v-tab-item>
         </v-tabs-items>
       </v-card>
     </v-dialog>
@@ -70,6 +73,7 @@ import ImageList from '@/components/ImageList';
 import WeatherTable from '@/components/WeatherTable';
 import Characteristics from '@/components/Characteristics';
 import NaverMap from '@/components/NaverMap';
+import LocalReview from '@/components/LocalReview';
 
 export default {
   props: ['isActive', 'cityCode'],
@@ -81,6 +85,7 @@ export default {
     WeatherTable,
     Characteristics,
     NaverMap,
+    LocalReview,
   },
   methods: {
     onInput() {
@@ -109,21 +114,21 @@ export default {
       ],
       tab: null,
       items: [
-        { tab: '점수', content: 'Tab 1 Content' },
-        { tab: '가이드', content: 'Tab 2 Content' },
-        { tab: '비용', content: 'Tab 4 Content' },
-        { tab: '장단', content: 'Tab 5 Content' },
-        { tab: '트렌드', content: 'Tab 9 Content' },
-        { tab: '사진', content: 'Tab 6 Content' },
-        { tab: '날씨', content: 'Tab 8 Content' },
-        { tab: '특징', content: 'Tab 10 Content' },
-        { tab: '주변', content: 'Tab 10 Content' },
-        { tab: '사람', content: 'Tab 3 Content' },
-        { tab: '리뷰', content: 'Tab 7 Content' },
-        { tab: '채팅', content: 'Tab 10 Content' },
-        { tab: '코워킹', content: 'Tab 10 Content' },
-        { tab: '비디오', content: 'Tab 10 Content' },
-        { tab: '원격근무', content: 'Tab 10 Content' },
+        { tab: '점수' },
+        { tab: '가이드' },
+        { tab: '비용' },
+        { tab: '장단' },
+        { tab: '트렌드' },
+        { tab: '사진' },
+        { tab: '날씨' },
+        { tab: '특징' },
+        { tab: '주변' },
+        { tab: '리뷰' },
+        { tab: '사람' },
+        { tab: '채팅' },
+        { tab: '코워킹' },
+        { tab: '비디오' },
+        { tab: '원격근무' },
       ],
       guideList: [
         { icon: '⭐️', title: '총점', content: 55 },
