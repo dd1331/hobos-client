@@ -70,7 +70,7 @@
 </template>
 <script>
 /* eslint-disable new-cap */
-import VUE_APP_SERVER_HOST from '@/../env-config';
+import { VUE_APP_SERVER_HOST } from '@/../env-config';
 
 export default {
   data: () => ({

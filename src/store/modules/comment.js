@@ -1,4 +1,4 @@
-import VUE_APP_SERVER_HOST from '@/../env-config';
+import { VUE_APP_SERVER_HOST } from '@/../env-config';
 
 export default {
   namespaced: true,

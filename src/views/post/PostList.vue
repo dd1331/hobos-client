@@ -28,7 +28,7 @@
 </template>
 <script>
 
-import VUE_APP_SERVER_HOST from '@/../env-config';
+import { VUE_APP_SERVER_HOST } from '@/../env-config';
 import PostListComponent from '../../components/PostList3';
 import EmphasizedList from '../../components/EmphasizedList';
 import NewsList from '../../components/NewsList';

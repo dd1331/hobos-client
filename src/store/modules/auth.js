@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import VUE_APP_SERVER_HOST from '@/../env-config';
+import { VUE_APP_SERVER_HOST } from '@/../env-config';
 //
 
 const getAppUser = () => JSON.parse(localStorage.getItem('appUser'));

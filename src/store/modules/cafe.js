@@ -1,5 +1,3 @@
-// import VUE_APP_SERVER_HOST from '@/../env-config';
-
 const VUE_APP_LOCAL_SERVICE = process.env.VUE_APP_LOCAL_SERVICE ? process.env.VUE_APP_LOCAL_SERVICE : 'http://localhost:4000';
 export default {
   namespaced: true,
