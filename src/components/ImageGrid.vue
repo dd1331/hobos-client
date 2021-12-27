@@ -108,7 +108,6 @@ export default {
   },
   methods: {
     click(item) {
-      console.log('click -> item', item);
       this.isActive = true;
       this.cityCode = item.id;
     },

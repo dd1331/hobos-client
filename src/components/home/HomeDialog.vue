@@ -95,7 +95,7 @@ export default {
   },
   computed: {
     localDetail() {
-      return this.$store.getters['local/getLocalDetail']; // return this.$store.getters['post/getPopularPosts'];
+      return this.$store.getters['local/getLocalDetail'];
     },
   },
   data() {

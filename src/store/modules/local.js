@@ -17,13 +17,12 @@ export default {
   },
   actions: {
     async fetchCityRanking({ commit }, params) {
-      const { data } = await this.$axios.get(`${VUE_APP_LOCAL_SERVICE}/locals/ranking/city`, { params });
+      const { data } = await this.$axios.get(`${VUE_APP_LOCAL_SERVICE}/locals/ranking`, { params });
 
       commit('setCityRanking', data);
     },
     async fetchLocalDetail({ commit }, params) {
       const { data } = await this.$axios.get(`${VUE_APP_LOCAL_SERVICE}/locals/${params.cityCode}`);
-      console.log('fetchLocalDetail -> data', data);
 
       commit('setLocalDetail', data);
     },
