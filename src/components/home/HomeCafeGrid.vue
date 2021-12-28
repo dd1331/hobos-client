@@ -13,7 +13,8 @@
       </div>
     </div>
     <Image-Grid @onClick="onClick" :items="cafes" :cols="cols"></Image-Grid>
-    <Cafe-Dialog :cafeCode="cafeCode" :isActive="isActive" @deactivate="onDeactivate" />
+    <Cafe-Dialog v-if="cafeCode !== -1"
+    :cafeCode="cafeCode" :isActive="isActive" @deactivate="onDeactivate" />
   </div>
 </template>
 <script>

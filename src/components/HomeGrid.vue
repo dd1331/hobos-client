@@ -13,7 +13,8 @@
       </div>
     </div>
     <Image-Grid @onClick="onClick" :items="items" :cols="cols"/>
-    <Home-Dialog :cityCode="cityCode" :isActive="isActive" @deactivate="onDeactivate" />
+    <Home-Dialog v-if="cityCode !== -1"
+    :cityCode="cityCode" :isActive="isActive" @deactivate="onDeactivate" />
   </div>
 </template>
 <script>

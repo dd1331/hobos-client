@@ -23,7 +23,7 @@
         작성
       </v-btn>
     </div>
-    <ReviewList/>
+    <ReviewList :reviews="reviews"/>
   </div>
 
 </template>
@@ -32,23 +32,16 @@
 import ReviewList from '@/components/ReviewList';
 
 export default {
-  mounted() {
-    this.$store.dispatch('local/fetchLocalReview', this.localDetail.cityCode);
-  },
+  props: ['reviews'],
   data() {
     return {
       content: '',
     };
   },
   components: { ReviewList },
-  computed: {
-    localDetail() {
-      return this.$store.getters['local/getLocalDetail'];
-    },
-  },
   methods: {
     createReview() {
-      this.$store.dispatch('local/createReview', { content: this.content, cityCode: this.localDetail.cityCode });
+      this.$emit('onCreateReview', this.content);
     },
   },
 

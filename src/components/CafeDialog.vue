@@ -7,10 +7,10 @@
         <v-img
           class="white--text align-center"
           height="200px"
-          src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+          :src="cafeDetail.files[0].url"
         >
           <div style="display:flex; justify-content:center; align-items: center;">
-            <h1>{{cafeDetail}}</h1>
+            <h1>{{cafeDetail.title}}</h1>
           </div>
         </v-img>
         <v-tabs
@@ -34,22 +34,10 @@
             <DialogList/>
           </v-tab-item>
           <v-tab-item style="padding:20px;" :transition="false">
-            <DialogList :list="guideList"/>
-          </v-tab-item>
-          <v-tab-item style="padding:20px;" :transition="false">
-            <DialogList :list="costOrLivingList"/>
-          </v-tab-item>
-          <v-tab-item style="padding:20px;" :transition="false">
             <DialogList :list="prosAndConsList"/>
           </v-tab-item>
           <v-tab-item style="padding:20px;" :transition="false">
-            <Visitor-Chart/>
-          </v-tab-item>
-          <v-tab-item style="padding:20px;" :transition="false">
-            <Image-List/>
-          </v-tab-item>
-          <v-tab-item style="padding:20px;" :transition="false">
-            <Weather-Table/>
+            <Image-List :images="images"/>
           </v-tab-item>
           <v-tab-item style="padding:20px;" :transition="false">
             <Characteristics/>
@@ -58,7 +46,7 @@
             <Naver-Map style="height:600px;" :cafeCode="cafeCode"/>
           </v-tab-item>
           <v-tab-item style="padding:20px;" :transition="false">
-            <LocalReview/>
+            <DialogReview v-if="cafeDetail" :reviews="reviews" @onCreateReview="createReview"/>
           </v-tab-item>
         </v-tabs-items>
       </v-card>
@@ -68,82 +56,64 @@
 <script>
 import Scores from '@/components/Scores';
 import DialogList from '@/components/DialogList';
-import VisitorChart from '@/components/VisitorChart';
 import ImageList from '@/components/ImageList';
-import WeatherTable from '@/components/WeatherTable';
 import Characteristics from '@/components/Characteristics';
 import NaverMap from '@/components/NaverMap';
-import LocalReview from '@/components/LocalReview';
+import DialogReview from '@/components/DialogReview';
 
 export default {
   props: ['isActive', 'cafeCode'],
   components: {
     Scores,
     DialogList,
-    VisitorChart,
     ImageList,
-    WeatherTable,
     Characteristics,
     NaverMap,
-    LocalReview,
+    DialogReview,
   },
   methods: {
     onInput() {
       this.tab = 0;
       this.$emit('deactivate');
     },
+    createReview(content) {
+      this.$store.dispatch('cafe/createReview', { content, code: this.cafeDetail.id, type: 'cafe' });
+    },
   },
   watch: {
     async cafeCode(cafeCode) {
-      await this.$store.dispatch('cafe/fetchCafeDetail', { cafeCode });
+      this.$store.dispatch('cafe/fetchCafeDetail', { cafeCode });
+      this.$store.dispatch('cafe/fetchCafeReviews', { cafeCode });
     },
   },
   computed: {
     cafeDetail() {
       return this.$store.getters['cafe/getCafeDetail'];
     },
+    images() {
+      return this.cafeDetail.files;
+    },
+    reviews() {
+      return this.$store.getters['cafe/getCafeReviews'];
+    },
+  },
+  mounted() {
+    this.$store.dispatch('cafe/fetchCafeReviews', { cafeCode: this.cafeCode });
+  },
+  created() {
+    this.$store.dispatch('cafe/fetchCafeDetail', { cafeCode: this.cafeCode });
   },
   data() {
     return {
       dialog: false,
-      details: [
-        { id: 1, city: 'test', town: 'tese3131' },
-        { id: 2, city: 'tes2', town: 'tese3132' },
-        { id: 3, city: 'tes3', town: 'tese3133' },
-        { id: 4, city: 'tes4', town: 'tese3134' },
-      ],
       tab: null,
       items: [
         { tab: '점수' },
-        { tab: '가이드' },
-        { tab: '비용' },
         { tab: '장단' },
-        { tab: '트렌드' },
         { tab: '사진' },
-        { tab: '날씨' },
         { tab: '특징' },
         { tab: '주변' },
         { tab: '리뷰' },
-        { tab: '사람' },
-        { tab: '채팅' },
-        { tab: '코워킹' },
-        { tab: '비디오' },
-        { tab: '원격근무' },
-      ],
-      guideList: [
-        { icon: '⭐️', title: '총점', content: 55 },
-        { icon: '💰', title: '비용', content: 30 },
-        { icon: '🖥', title: '인터넷', content: 10 },
-        { icon: '☀️', title: '날씨', content: 90 },
-        { icon: '⏱', title: '시간', content: 5 },
-      ],
-      costOrLivingList: [
-        { icon: '💰', title: '노마드비용', content: '월 34만' },
-        { icon: '💰', title: '가족비용', content: '월 134만' },
-        { icon: '💰', title: '원룸 월세', content: '월 534만' },
-        { icon: '💰', title: '에어비앤비', content: '월 1만' },
-        { icon: '💰', title: '노마드비용2', content: '월 55만' },
-        { icon: '💰', title: '노마드비용3', content: '월 4만' },
       ],
       prosAndConsList: [
         { icon: '👍', title: '추움' },

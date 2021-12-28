@@ -34,10 +34,10 @@ export default {
     },
     async createReview({ dispatch }, params) {
       await this.$axios.post(`${VUE_APP_SERVER_HOST}/locals/review`, params);
-      dispatch('fetchLocalReview', params.cityCode);
+      dispatch('fetchLocalReview', { cityCode: params.code });
     },
-    async fetchLocalReview({ commit, state }) {
-      const { data } = await this.$axios.get(`${VUE_APP_LOCAL_SERVICE}/reviews/${state.localDetail.cityCode}`);
+    async fetchLocalReview({ commit }, params) {
+      const { data } = await this.$axios.get(`${VUE_APP_LOCAL_SERVICE}/reviews/local/${params.cityCode}`);
       commit('setLocalReview', data);
     },
     async fetchNextCityRanking({ commit }, params) {

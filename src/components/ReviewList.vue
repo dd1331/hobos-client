@@ -26,12 +26,7 @@
 import dateMixins from '@/mixins/dateMixins';
 
 export default {
+  props: ['reviews'],
   mixins: [dateMixins],
-  computed: {
-    reviews() {
-      return this.$store.getters['local/getLocalReview'];
-    },
-  },
-
 };
 </script>

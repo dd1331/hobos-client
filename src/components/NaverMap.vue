@@ -88,7 +88,7 @@ export default {
   },
   async created() {
     try {
-      await this.$store.dispatch('local/fetchLocalDetail', { cityCode: this.cityCode });
+      // await this.$store.dispatch('local/fetchLocalDetail', { cityCode: this.cityCode });
       await this.initiateMap();
       const { places } = this.localDetail;
       places.map((place) => this.setMarker(place));

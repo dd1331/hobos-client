@@ -58,7 +58,7 @@
             <Naver-Map style="height:600px;" :cityCode="cityCode"/>
           </v-tab-item>
           <v-tab-item style="padding:20px;" :transition="false">
-            <LocalReview/>
+            <DialogReview v-if="localDetail" :reviews="reviews" @onCreateReview="createReview"/>
           </v-tab-item>
         </v-tabs-items>
       </v-card>
@@ -73,7 +73,7 @@ import ImageList from '@/components/ImageList';
 import WeatherTable from '@/components/WeatherTable';
 import Characteristics from '@/components/Characteristics';
 import NaverMap from '@/components/NaverMap';
-import LocalReview from '@/components/LocalReview';
+import DialogReview from '@/components/DialogReview';
 
 export default {
   props: ['isActive', 'cityCode'],
@@ -85,33 +85,39 @@ export default {
     WeatherTable,
     Characteristics,
     NaverMap,
-    LocalReview,
+    DialogReview,
   },
   methods: {
     onInput() {
       this.tab = 0;
       this.$emit('deactivate');
     },
+    createReview(content) {
+      this.$store.dispatch('local/createReview', { content, code: this.localDetail.cityCode, type: 'local' });
+    },
   },
   watch: {
-    async cityCode(cityCode) {
-      await this.$store.dispatch('local/fetchLocalDetail', { cityCode });
+    cityCode(cityCode) {
+      this.$store.dispatch('local/fetchLocalDetail', { cityCode });
+      this.$store.dispatch('local/fetchLocalReview', { cityCode });
     },
   },
   computed: {
     localDetail() {
       return this.$store.getters['local/getLocalDetail'];
     },
+    reviews() {
+      return this.$store.getters['local/getLocalReview'];
+    },
+  },
+  created() {
+    this.$store.dispatch('local/fetchLocalDetail', { cityCode: this.cityCode });
+  },
+  mounted() {
+    this.$store.dispatch('local/fetchLocalReview', { cityCode: this.cityCode });
   },
   data() {
     return {
-      dialog: false,
-      details: [
-        { id: 1, city: 'test', town: 'tese3131' },
-        { id: 2, city: 'tes2', town: 'tese3132' },
-        { id: 3, city: 'tes3', town: 'tese3133' },
-        { id: 4, city: 'tes4', town: 'tese3134' },
-      ],
       tab: null,
       items: [
         { tab: '점수' },
