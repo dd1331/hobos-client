@@ -17,6 +17,9 @@ export default {
     setLocalReview(state, localReview) {
       state.localReview = localReview;
     },
+    addNextCityRanking(state, cityRanking) {
+      state.cityRanking = [...state.cityRanking, ...cityRanking];
+    },
   },
   actions: {
     async fetchCityRanking({ commit }, params) {
@@ -36,6 +39,10 @@ export default {
     async fetchLocalReview({ commit, state }) {
       const { data } = await this.$axios.get(`${VUE_APP_LOCAL_SERVICE}/reviews/${state.localDetail.cityCode}`);
       commit('setLocalReview', data);
+    },
+    async fetchNextCityRanking({ commit }, params) {
+      const { data } = await this.$axios.get(`${VUE_APP_LOCAL_SERVICE}/locals/ranking`, { params });
+      commit('addNextCityRanking', data);
     },
   },
   getters: {
