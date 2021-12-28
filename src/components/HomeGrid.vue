@@ -12,16 +12,20 @@
         전체보기
       </div>
     </div>
-    <Image-Grid :items="items" :cols="cols"></Image-Grid>
+    <Image-Grid @onClick="onClick" :items="items" :cols="cols"/>
+    <Home-Dialog :cityCode="cityCode" :isActive="isActive" @deactivate="onDeactivate" />
   </div>
 </template>
 <script>
 import ImageGrid from '@/components/ImageGrid';
+import HomeDialog from '@/components/home/HomeDialog';
 
 export default {
   props: ['items'],
   data() {
     return {
+      isActive: false,
+      cityCode: -1,
     };
   },
   computed: {
@@ -32,8 +36,18 @@ export default {
       return this.isMobile ? 6 : 4;
     },
   },
+  methods: {
+    onDeactivate() {
+      this.isActive = false;
+    },
+    onClick(cityCode) {
+      this.cityCode = cityCode;
+      this.isActive = true;
+    },
+  },
   components: {
     ImageGrid,
+    HomeDialog,
   },
 };
 </script>

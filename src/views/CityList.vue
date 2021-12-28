@@ -14,8 +14,8 @@
         ></v-select>
       </div>
     </div>
-    <Image-Grid :items="items" :cols="cols"/>
-
+    <Image-Grid @onClick="onClick" :items="items" :cols="cols"/>
+    <Home-Dialog :cityCode="cityCode" :isActive="isActive" @deactivate="onDeactivate" />
     <div v-intersect.quiet="infiniteScrolling"></div>
   </div>
 
@@ -24,6 +24,7 @@
 <script>
 import ImageGrid from '@/components/ImageGrid';
 import gridMixins from '@/mixins/gridMixins';
+import HomeDialog from '@/components/home/HomeDialog';
 
 export default {
   mixins: [gridMixins],
@@ -32,10 +33,18 @@ export default {
       selectedProvince: '전체',
       page: 1,
       hasMore: true,
-
+      isActive: false,
+      cityCode: -1,
     };
   },
   methods: {
+    onDeactivate() {
+      this.isActive = false;
+    },
+    onClick(cityCode) {
+      this.cityCode = cityCode;
+      this.isActive = true;
+    },
     filterProvince() {
       this.page = 1;
       const provinceName = this.selectedProvince === '전체' ? undefined : this.selectedProvince;
@@ -54,6 +63,8 @@ export default {
 
   components: {
     ImageGrid,
+    HomeDialog,
+
   },
   computed: {
     provinces() {

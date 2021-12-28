@@ -12,10 +12,13 @@
         전체보기
       </div>
     </div>
-    <Image-Grid :items="cafes" :cols="cols"></Image-Grid>
+    <Image-Grid @onClick="onClick" :items="cafes" :cols="cols"></Image-Grid>
+    <Cafe-Dialog :cafeCode="cafeCode" :isActive="isActive" @deactivate="onDeactivate" />
   </div>
 </template>
 <script>
+import CafeDialog from '@/components/CafeDialog';
+
 import ImageGrid from '@/components/ImageGrid';
 import gridMixins from '@/mixins/gridMixins';
 
@@ -23,17 +26,25 @@ export default {
   mixins: [gridMixins],
   data() {
     return {
-      cafeInfo: this.format4cafeGrid(),
+      isActive: false,
+      cafeCode: -1,
     };
+  },
+  methods: {
+    onDeactivate() {
+      this.isActive = false;
+    },
+    onClick(cafeCode) {
+      this.cafeCode = cafeCode;
+      this.isActive = true;
+    },
   },
   components: {
     ImageGrid,
+    CafeDialog,
+
   },
   computed: {
-    items() {
-      if (this.isMobile) return this.cafeInfo.slice(0, 6);
-      return this.cafeInfo;
-    },
     isMobile() {
       return this.$vuetify.breakpoint.mobile;
     },

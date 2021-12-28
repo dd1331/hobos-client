@@ -28,6 +28,7 @@ const gridMixins = {
     format4cafeGrid(cafe) {
       const [provinceName, cityName] = cafe.address.split(' ');
       return {
+        id: cafe.id,
         thumbnail: cafe.files[0]?.url || 'https://blog.kakaocdn.net/dn/bTJwwu/btqDLDTY0aW/rG0BsutgO75L18SJ9KWoI0/img.jpg',
         title: cafe.title,
         subtitle: cityName,

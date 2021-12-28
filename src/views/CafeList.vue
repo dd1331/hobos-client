@@ -14,7 +14,8 @@
         ></v-select>
       </div>
     </div>
-    <Image-Grid :items="items" :cols="cols"/>
+    <Image-Grid @onClick="onClick" :items="items" :cols="cols"/>
+    <Cafe-Dialog :cafeCode="cafeCode" :isActive="isActive" @deactivate="onDeactivate" />
 
     <div v-intersect.quiet="infiniteScrolling"></div>
 
@@ -25,10 +26,18 @@
 <script>
 import ImageGrid from '@/components/ImageGrid';
 import gridMixins from '@/mixins/gridMixins';
+import CafeDialog from '@/components/CafeDialog';
 
 export default {
   mixins: [gridMixins],
   methods: {
+    onDeactivate() {
+      this.isActive = false;
+    },
+    onClick(cafeCode) {
+      this.cafeCode = cafeCode;
+      this.isActive = true;
+    },
     filterProvince() {
       this.page = 1;
       const provinceName = this.selectedProvince === '전체' ? undefined : this.selectedProvince;
@@ -46,6 +55,8 @@ export default {
   },
   data() {
     return {
+      cafeCode: -1,
+      isActive: false,
       selectedProvince: '전체',
       page: 1,
       hasMore: true,
@@ -75,6 +86,7 @@ export default {
 
   components: {
     ImageGrid,
+    CafeDialog,
   },
   computed: {
     items() {

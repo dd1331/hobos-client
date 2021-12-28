@@ -87,29 +87,24 @@
         </div>
       </v-col>
     </v-row>
-    <Home-Dialog :cityCode="cityCode" :isActive="isActive" @deactivate="isActive = false" />
   </div>
 </template>
 <script>
-import HomeDialog from '@/components/home/HomeDialog';
 
 export default {
   props: ['items', 'cols'],
-  components: {
-    HomeDialog,
-  },
   data() {
     return {
       overlay: false,
       overlayIndex: -1,
-      isActive: false,
-      cityCode: -1,
     };
   },
   methods: {
+    onDeactivate() {
+      this.$emit('deactivate');
+    },
     click(item) {
-      this.isActive = true;
-      this.cityCode = item.id;
+      this.$emit('onClick', item.id);
     },
     openUrl(url) {
       window.open(url);
