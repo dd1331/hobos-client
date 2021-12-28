@@ -2,13 +2,15 @@
   <div>
     <div style="display: flex;
         align-items: center;
-        justify-content: right;">
+        justify-content: right; margin-top:1rem;
+        margin-bottom:-1rem">
       <div style="width:10%;">
         <v-select style=""
           :items="provinces"
           label="시/도"
           @change="filterProvince"
           v-model="selectedProvince"
+          dense
         ></v-select>
       </div>
     </div>
@@ -35,6 +37,7 @@ export default {
   },
   methods: {
     filterProvince() {
+      this.page = 1;
       const provinceName = this.selectedProvince === '전체' ? undefined : this.selectedProvince;
       this.$store.dispatch('local/fetchCityRanking', { take: 21, provinceName });
     },

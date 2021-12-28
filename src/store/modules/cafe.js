@@ -8,11 +8,18 @@ export default {
     setCafeRanking(state, cafeRanking) {
       state.cafeRanking = cafeRanking;
     },
+    addNextCafeRanking(state, cafeRanking) {
+      state.cafeRanking = [...state.cafeRanking, ...cafeRanking];
+    },
   },
   actions: {
     async fetchCafeRanking({ commit }, params) {
       const { data } = await this.$axios.get(`${VUE_APP_LOCAL_SERVICE}/places/cafe/ranking`, { params });
       commit('setCafeRanking', data);
+    },
+    async fetchNextCafeRanking({ commit }, params) {
+      const { data } = await this.$axios.get(`${VUE_APP_LOCAL_SERVICE}/places/cafe/ranking`, { params });
+      commit('addNextCafeRanking', data);
     },
   },
   getters: {
