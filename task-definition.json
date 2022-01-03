@@ -63,7 +63,7 @@
     "EC2",
     "FARGATE"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:175040657922:task-definition/hobos-client:4",
+  "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:175040657922:task-definition/hobos-client:5",
   "family": "hobos-client",
   "requiresAttributes": [
     {
@@ -119,7 +119,7 @@
     "cpuArchitecture": null
   },
   "cpu": "256",
-  "revision": 4,
+  "revision": 5,
   "status": "ACTIVE",
   "inferenceAccelerators": null,
   "proxyConfiguration": null,
