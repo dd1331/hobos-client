@@ -69,7 +69,7 @@
     "EC2",
     "FARGATE"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:175040657922:task-definition/hobos-client:9",
+  "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:175040657922:task-definition/hobos-client:1",
   "family": "hobos-client",
   "requiresAttributes": [
     {
