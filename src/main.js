@@ -25,7 +25,7 @@ Vue.prototype.$axios = axios;
 // Vue.prototype.$socket = socket;
 
 store.$axios = axios;
-
+console.log('process.env', process.env);
 axios.interceptors.request.use(
   (axiosConfig) => {
     const accessToken = localStorage.getItem('accessToken');
