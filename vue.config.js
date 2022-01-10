@@ -1,7 +1,10 @@
+const webpack = require('webpack');
+
 module.exports = {
   transpileDependencies: [
     'vuetify',
   ],
-  VUE_APP_LOCAL_SERVICE: process.env.VUE_APP_LOCAL_SERVICE,
-  VUE_APP_SERVER_HOST: process.env.VUE_APP_SERVER_HOST,
+  configureWebpack: {
+    plugins: [new webpack.EnvironmentPlugin(['VUE_APP_SERVER_HOST', 'VUE_APP_LOCAL_SERVICE'])],
+  },
 };
