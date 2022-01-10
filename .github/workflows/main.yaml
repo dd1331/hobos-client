@@ -30,7 +30,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
         with:
-          images: dd1331/hobos-client:latest
+          images: dd1331/hobos-client:main
         
       - name: Build and push Docker image
         id: build-image
@@ -54,7 +54,7 @@ jobs:
         with:
           task-definition: ${{ env.ECS_TASK_DEFINITION }}
           container-name: ${{ env.CONTAINER_NAME }}
-          image: dd1331/hobos-client:latest
+          image: dd1331/hobos-client:main
 
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@de0132cf8cdedb79975c6d42b77eb7ea193cf28e
