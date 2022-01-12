@@ -31,15 +31,14 @@
         <v-tabs-items v-model="tab">
           <v-tab-item style="padding:20px;" :transition="false">
             <Scores/>
-            <DialogList/>
           </v-tab-item>
-          <v-tab-item style="padding:20px;" :transition="false">
+          <v-tab-item v-if="false" style="padding:20px;" :transition="false">
             <DialogList :list="guideList"/>
           </v-tab-item>
-          <v-tab-item style="padding:20px;" :transition="false">
+          <v-tab-item v-if="false" style="padding:20px;" :transition="false">
             <DialogList :list="costOrLivingList"/>
           </v-tab-item>
-          <v-tab-item style="padding:20px;" :transition="false">
+          <v-tab-item v-if="false" style="padding:20px;" :transition="false">
             <DialogList :list="prosAndConsList"/>
           </v-tab-item>
           <v-tab-item style="padding:20px;" :transition="false">
@@ -114,27 +113,27 @@ export default {
     this.$store.dispatch('local/fetchLocalDetail', { cityCode: this.cityCode });
   },
   mounted() {
-    this.$store.dispatch('local/fetchLocalReview', { cityCode: this.cityCode });
+    if (this.cityCode !== -1) { this.$store.dispatch('local/fetchLocalReview', { cityCode: this.cityCode }); }
   },
   data() {
     return {
       tab: null,
       items: [
         { tab: '점수' },
-        { tab: '가이드' },
-        { tab: '비용' },
-        { tab: '장단' },
+        // { tab: '가이드' },
+        // { tab: '비용' },
+        // { tab: '장단' },
         { tab: '트렌드' },
         { tab: '사진' },
         { tab: '날씨' },
         { tab: '특징' },
         { tab: '주변' },
         { tab: '리뷰' },
-        { tab: '사람' },
-        { tab: '채팅' },
-        { tab: '코워킹' },
-        { tab: '비디오' },
-        { tab: '원격근무' },
+        // { tab: '사람' },
+        // { tab: '채팅' },
+        // { tab: '코워킹' },
+        // { tab: '비디오' },
+        // { tab: '원격근무' },
       ],
       guideList: [
         { icon: '⭐️', title: '총점', content: 55 },

@@ -30,7 +30,7 @@ const gridMixins = {
       return {
         id: cafe.id,
         thumbnail: cafe.files[0]?.url || 'https://blog.kakaocdn.net/dn/bTJwwu/btqDLDTY0aW/rG0BsutgO75L18SJ9KWoI0/img.jpg',
-        title: cafe.title,
+        title: cafe.title.replace('<b>', '').replace('</b>', '').replace('&amp;', ''),
         subtitle: cityName,
         topRight: provinceName,
         scores: [

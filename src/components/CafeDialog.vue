@@ -31,19 +31,12 @@
         <v-tabs-items v-model="tab">
           <v-tab-item style="padding:20px;" :transition="false">
             <Scores/>
-            <DialogList/>
           </v-tab-item>
           <v-tab-item style="padding:20px;" :transition="false">
             <DialogList :list="prosAndConsList"/>
           </v-tab-item>
           <v-tab-item style="padding:20px;" :transition="false">
             <Image-List :images="images"/>
-          </v-tab-item>
-          <v-tab-item style="padding:20px;" :transition="false">
-            <Characteristics/>
-          </v-tab-item>
-          <v-tab-item :transition="false">
-            <Naver-Map style="height:600px;" :cafeCode="cafeCode"/>
           </v-tab-item>
           <v-tab-item style="padding:20px;" :transition="false">
             <DialogReview v-if="cafeDetail" :reviews="reviews" @onCreateReview="createReview"/>
@@ -57,8 +50,6 @@
 import Scores from '@/components/Scores';
 import DialogList from '@/components/DialogList';
 import ImageList from '@/components/ImageList';
-import Characteristics from '@/components/Characteristics';
-import NaverMap from '@/components/NaverMap';
 import DialogReview from '@/components/DialogReview';
 
 export default {
@@ -67,8 +58,6 @@ export default {
     Scores,
     DialogList,
     ImageList,
-    Characteristics,
-    NaverMap,
     DialogReview,
   },
   methods: {
@@ -97,9 +86,11 @@ export default {
       return this.$store.getters['cafe/getCafeReviews'];
     },
   },
-  mounted() {
-    this.$store.dispatch('cafe/fetchCafeReviews', { cafeCode: this.cafeCode });
-  },
+  // mounted() {
+  //   if (this.cafeCode === -1) return;
+
+  //   this.$store.dispatch('cafe/fetchCafeReviews', { cafeCode: this.cafeCode });
+  // },
   created() {
     this.$store.dispatch('cafe/fetchCafeDetail', { cafeCode: this.cafeCode });
   },
@@ -111,8 +102,6 @@ export default {
         { tab: '점수' },
         { tab: '장단' },
         { tab: '사진' },
-        { tab: '특징' },
-        { tab: '주변' },
         { tab: '리뷰' },
       ],
       prosAndConsList: [

@@ -39,8 +39,12 @@ export default {
       commit('setCafeReviews', data);
     },
     async createReview({ dispatch }, params) {
-      await this.$axios.post(`${VUE_APP_SERVER_HOST}/locals/review`, params);
-      dispatch('fetchCafeReviews', { cafeCode: params.code });
+      try {
+        await this.$axios.post(`${VUE_APP_SERVER_HOST}/locals/review`, params);
+        dispatch('fetchCafeReviews', { cafeCode: params.code });
+      } catch (error) {
+        if (error.response.status === 401) this.$router.push('/login');
+      }
     },
   },
   getters: {

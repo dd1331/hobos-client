@@ -25,6 +25,7 @@ Vue.prototype.$axios = axios;
 // Vue.prototype.$socket = socket;
 
 store.$axios = axios;
+store.$router = router;
 console.log('process.env', process.env);
 axios.interceptors.request.use(
   (axiosConfig) => {

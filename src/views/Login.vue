@@ -2,7 +2,7 @@
   <div style="display:flex; justify-content:center; align-items: center;">
     <div :style="wrapper">
       <h1 class="mb-6">로그인</h1>
-      <v-row no-gutters>
+      <!-- <v-row no-gutters>
         <v-col
           cols="6"
           sm="6"
@@ -26,7 +26,7 @@
         <v-divider style="margin-right: 20px"></v-divider>
         <span>OR</span>
         <v-divider style="margin-left: 20px"></v-divider>
-      </div>
+      </div> -->
       <v-form
         ref="form"
         v-model="valid"
@@ -124,12 +124,12 @@ export default {
   },
   mounted() {
     // eslint-disable-next-line no-undef
-    const naverLogin = new naver_id_login(process.env.VUE_APP_NAVER_CLIENT_ID,
-      process.env.VUE_APP_NAVER_LOGIN_CALLBACK_URL);
-    const state = naverLogin.getUniqState();
-    naverLogin.setButton('green', 3, this.isMobile ? 35.5 : 51);
-    naverLogin.setState(state);
-    naverLogin.init_naver_id_login();
+    // const naverLogin = new naver_id_login(process.env.VUE_APP_NAVER_CLIENT_ID,
+    //   process.env.VUE_APP_NAVER_LOGIN_CALLBACK_URL);
+    // const state = naverLogin.getUniqState();
+    // naverLogin.setButton('green', 3, this.isMobile ? 35.5 : 51);
+    // naverLogin.setState(state);
+    // naverLogin.init_naver_id_login();
   },
 };
 </script>
