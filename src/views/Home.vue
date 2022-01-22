@@ -26,15 +26,15 @@
       </div>
     </v-container>
     <h2 class="grey--text text--darken-3 d-inline">
-      🆕 최신
+      🆕 최근
     </h2>
     <Post-List :posts="recentPosts" category="true"></Post-List>
-    <Home-News></Home-News>
+    <Accomodation-Review/>
   </div>
 </template>
 
 <script>
-import HomeNews from '@/components/HomeNews.vue';
+import AccomodationReview from '@/components/AccomodationReview.vue';
 import HomeGrid from '@/components/HomeGrid.vue';
 import HomeCafeGrid from '@/components/home/HomeCafeGrid.vue';
 import PostList from '@/components/PostList3.vue';
@@ -49,7 +49,7 @@ export default {
   },
   name: 'Home',
   components: {
-    HomeNews,
+    AccomodationReview,
     HomeGrid,
     HomeCafeGrid,
     PostList,

@@ -92,9 +92,7 @@ export default {
     },
     async removePost({ dispatch }, payload) {
       try {
-        // TODO replace temperal return value
-        const res = payload.id;
-        // const res = await this.$axios.delete(`${VUE_APP_SERVER_HOST}/posts/${payload.id}`);
+        const res = await this.$axios.delete(`${VUE_APP_SERVER_HOST}/posts/${payload.id}`);
         dispatch('fetchCategorizedPosts', { title: payload.category });
         return res;
       } catch (error) {

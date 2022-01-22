@@ -49,9 +49,9 @@ export default {
       message: '',
       posts: [
         { emoji: '👩‍💻', title: 'Go hobo to local', subtitle: 'get some relax' },
-        { emoji: '👩‍🌾', title: '여기가 고흥', subtitle: 'this is 고흥' },
+        { emoji: '👩‍🌾', title: '고흥에 가볼까', subtitle: '산으로 바다로' },
         { emoji: '🧐', title: 'meet people to inspired', subtitle: 'they\'re wating for you' },
-        { emoji: '🏬', title: '이것이 서울', subtitle: 'this is seoul' },
+        { emoji: '🏬', title: '부여로 가자', subtitle: '백마강이 있는 곳' },
       ],
 
     };
@@ -76,7 +76,17 @@ export default {
   errorCaptured(err) {
     const { message } = err.response.data;
     this.message = message;
+    if (message === 'jwt expired') {
+      this.message = '자동 로그인 기간이 만료되었습니다';
+      this.logout();
+    }
     this.snackbar = true;
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch('auth/logout');
+      this.$router.push('/login');
+    },
   },
 };
 </script>

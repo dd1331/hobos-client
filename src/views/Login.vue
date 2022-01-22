@@ -80,8 +80,8 @@ export default {
 
   data: () => ({
     valid: true,
-    phone: '',
-    password: '',
+    phone: process.env.NODE_ENV !== 'production' ? '01068634592' : '',
+    password: process.env.NODE_ENV !== 'production' ? '1331' : '',
     phoneRules: [
       (v) => !!v || '휴대폰 번호를 입력해주세요',
       (v) => (v && v.length >= 11) || '휴대폰 번호를 확인해주세요',
