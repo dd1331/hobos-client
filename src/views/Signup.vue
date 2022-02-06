@@ -2,26 +2,13 @@
   <div style="display:flex; justify-content:center; align-items: center;">
     <div :style="wrapper">
       <h1 class="mb-6">회원가입</h1>
-      <v-row no-gutters>
-        <v-col
-          cols="6"
-          sm="6"
-        >
-          <div id="naver_id_login" />
-        </v-col>
-        <v-col
-          cols="6"
-          sm="6"
-        >
-        <a id="custom-login-btn" href="javascript:loginWithKakao()"
-          style="">
-          <img
-            src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg"
-            width="100%"
-          />
-        </a>
-        </v-col>
-      </v-row>
+      <img
+        style="margin-left: auto; margin-right: auto;  display: block; cursor:pointer;"
+        src="@/assets/naver_square.png"
+        width="60px"
+        @click="onNaverClick"
+      />
+      <div style="display:none" ref="naver" id="naver_id_login" />
       <div style="display:flex; align-items: center; margin: 30px 0 30px 0">
         <v-divider style="margin-right: 20px"></v-divider>
         <span>OR</span>
@@ -70,7 +57,7 @@
 </template>
 <script>
 /* eslint-disable new-cap */
-import { VUE_APP_SERVER_HOST } from '@/../env-config';
+import { VUE_APP_NAVER_LOGIN_CALLBACK_URL, VUE_APP_NAVER_CLIENT_ID, VUE_APP_SERVER_HOST } from '@/../env-config';
 
 export default {
   data: () => ({
@@ -98,6 +85,9 @@ export default {
   },
 
   methods: {
+    onNaverClick() {
+      this.$refs.naver.firstChild.click();
+    },
     async signup() {
       this.validate();
       const payload = {
@@ -122,10 +112,9 @@ export default {
   },
   mounted() {
     // eslint-disable-next-line no-undef
-    const naverLogin = new naver_id_login(process.env.VUE_APP_NAVER_CLIENT_ID,
-      process.env.VUE_APP_NAVER_LOGIN_CALLBACK_URL);
+    const naverLogin = new naver_id_login(VUE_APP_NAVER_CLIENT_ID,
+      VUE_APP_NAVER_LOGIN_CALLBACK_URL);
     const state = naverLogin.getUniqState();
-    naverLogin.setButton('green', 3, this.isMobile ? 35.5 : 51);
     naverLogin.setState(state);
     naverLogin.init_naver_id_login();
   },

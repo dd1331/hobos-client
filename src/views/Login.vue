@@ -2,31 +2,18 @@
   <div style="display:flex; justify-content:center; align-items: center;">
     <div :style="wrapper">
       <h1 class="mb-6">로그인</h1>
-      <!-- <v-row no-gutters>
-        <v-col
-          cols="6"
-          sm="6"
-        >
-          <div id="naver_id_login" />
-        </v-col>
-        <v-col
-          cols="6"
-          sm="6"
-        >
-        <a id="custom-login-btn" href="javascript:loginWithKakao()"
-          style="">
-          <img
-            src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg"
-            width="100%"
-          />
-        </a>
-        </v-col>
-      </v-row>
+      <img
+         style="margin-left: auto; margin-right: auto;  display: block; cursor:pointer;"
+        src="@/assets/naver_square.png"
+        width="60px"
+        @click="loginWithNaver"
+        />
+      <div style="display:none" ref="naver" id="naver_id_login" />
       <div style="display:flex; align-items: center; margin: 30px 0 30px 0">
         <v-divider style="margin-right: 20px"></v-divider>
         <span>OR</span>
         <v-divider style="margin-left: 20px"></v-divider>
-      </div> -->
+      </div>
       <v-form
         ref="form"
         v-model="valid"
@@ -75,6 +62,7 @@
   </div>
 </template>
 <script>
+import { VUE_APP_NAVER_LOGIN_CALLBACK_URL, VUE_APP_NAVER_CLIENT_ID } from '@/../env-config';
 /* eslint-disable new-cap */
 export default {
 
@@ -94,6 +82,9 @@ export default {
   }),
 
   methods: {
+    loginWithNaver() {
+      this.$refs.naver.firstChild.click();
+    },
     async login() {
       this.validate();
       const payload = {
@@ -124,12 +115,11 @@ export default {
   },
   mounted() {
     // eslint-disable-next-line no-undef
-    // const naverLogin = new naver_id_login(process.env.VUE_APP_NAVER_CLIENT_ID,
-    //   process.env.VUE_APP_NAVER_LOGIN_CALLBACK_URL);
-    // const state = naverLogin.getUniqState();
-    // naverLogin.setButton('green', 3, this.isMobile ? 35.5 : 51);
-    // naverLogin.setState(state);
-    // naverLogin.init_naver_id_login();
+    const naverLogin = new naver_id_login(VUE_APP_NAVER_CLIENT_ID,
+      VUE_APP_NAVER_LOGIN_CALLBACK_URL);
+    const state = naverLogin.getUniqState();
+    naverLogin.setState(state);
+    naverLogin.init_naver_id_login();
   },
 };
 </script>

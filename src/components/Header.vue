@@ -47,7 +47,6 @@ export default {
     },
     logout() {
       this.$store.dispatch('auth/logout');
-      this.$router.push('/');
     },
     routeTo(path) {
       if (this.$router.history.current.path === path) return;

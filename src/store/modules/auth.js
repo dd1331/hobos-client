@@ -42,6 +42,7 @@ export default {
       );
       localStorage.removeItem('accessToken');
       commit('REMOVE_USER');
+      window.location = '/';
     },
     async loginWithJwt({ commit }, payload) {
       const result = await this.$axios.post(`${VUE_APP_SERVER_HOST}/auth/jwt`, payload).then((res) => {

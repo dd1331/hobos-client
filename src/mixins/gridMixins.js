@@ -16,7 +16,7 @@ const gridMixins = {
         bottomLeft: `온도: ${city.temp || '측정중'}`,
         bottomRight: `${city.description || '측정중'}`,
         scores: [
-          { icon: '⭐️', title: '총점', percentage: 55 },
+          { icon: '⭐️', title: '평점', percentage: 55 },
           { icon: '💰', title: '비용', percentage: 30 },
           { icon: '🖥', title: '인터넷', percentage: 10 },
           { icon: '☀️', title: '날씨', percentage: 90 },
