@@ -6,7 +6,7 @@
       "dnsSearchDomains": null,
       "environmentFiles": [
         {
-          "value": "arn:aws:s3:::hobos/env/client.env",
+          "value": "arn:aws:s3:::hobos/env/client/.env",
           "type": "s3"
         }
       ],
@@ -64,7 +64,7 @@
   ],
   "placementConstraints": [],
   "memory": "512",
-  "taskRoleArn": "arn:aws:iam::175040657922:role/ecsTaskExecutionRole",
+  "taskRoleArn": null,
   "compatibilities": [
     "EC2",
     "FARGATE"
