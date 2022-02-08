@@ -27,8 +27,8 @@
 </template>
 <script>
 
+import { VUE_APP_SERVER_HOST } from '@/../env-config';
 import dateMixins from '../mixins/dateMixins';
-import VUE_APP_SERVER_HOST from '../../env-config';
 
 export default {
   mixins: [dateMixins],
