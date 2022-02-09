@@ -18,6 +18,9 @@ export default {
     localDetail() {
       return this.$store.getters['local/getLocalDetail'];
     },
+    neighbors() {
+      return this.$store.getters['local/getNeighbors'];
+    },
   },
   methods: {
     createMarker(response, place) {
@@ -28,11 +31,11 @@ export default {
         <h3>${place.title}</h3>
         <p>${item.jibunAddress} | ${item.roadAddress}<br>
           <img src="${place.url || 'https://cdn.vuetifyjs.com/images/cards/docks.jpg'}" width="100%" height="100%" alt="${place.title}" class="thumb" /><br>
-          02-120 | 공공,사회기관 > 특별,광역시청<br>
-          <a href="http://www.seoul.go.kr" target="_blank">www.seoul.go.kr/</a>
+          ${place.category || ''}<br>
+          <a href="${place.link || ''}" target="_blank">${place.link || ''}</a>
         </p>
       </div>`;
-        // eslint-disable-next-line no-new
+      // eslint-disable-next-line no-new
       const marker = new naver.maps.Marker({
         position: new naver.maps.LatLng(y, x),
         map: this.map,
@@ -77,7 +80,7 @@ export default {
           };
           this.map = new naver.maps.Map('map', option);
           const title = this.localDetail.cityName;
-          const url = this.localDetail.files[0]
+          const url = this.localDetail.files[0].url
               || 'https://cdn.vuetifyjs.com/images/cards/docks.jpg';
           const place = { title, url };
           this.createMarker(response, place);
@@ -88,10 +91,9 @@ export default {
   },
   async created() {
     try {
-      // await this.$store.dispatch('local/fetchLocalDetail', { cityCode: this.cityCode });
+      await this.$store.dispatch('local/fetchNeighbors', { cityCode: this.cityCode });
       await this.initiateMap();
-      const { places } = this.localDetail;
-      places.map((place) => this.setMarker(place));
+      this.neighbors.map((place) => this.setMarker(place));
     } catch (error) {
       console.log('created -> error', error);
     }

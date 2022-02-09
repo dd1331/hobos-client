@@ -9,7 +9,7 @@ const gridMixins = {
       const random5 = Math.floor(Math.random() * (5 - 0) + 0);
       const result = {
         id: city.cityCode,
-        thumbnail: city.files[0]?.url || thumbnails[random5],
+        thumbnail: city.files[random5]?.url || thumbnails[random5],
         title: city.cityName,
         subtitle: city.provinceName,
         topRight: `미세먼지: ${city.pm10Value || '측정중'} pm`,

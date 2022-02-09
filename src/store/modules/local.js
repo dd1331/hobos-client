@@ -6,6 +6,7 @@ export default {
     cityRanking: [],
     localDetail: {},
     localReview: [],
+    neighbors: [],
   }),
   mutations: {
     setCityRanking(state, cityRanking) {
@@ -13,6 +14,9 @@ export default {
     },
     setLocalDetail(state, localDetail) {
       state.localDetail = localDetail;
+    },
+    setNeighbors(state, neighbors) {
+      state.neighbors = neighbors;
     },
     setLocalReview(state, localReview) {
       state.localReview = localReview;
@@ -31,6 +35,11 @@ export default {
       const { data } = await this.$axios.get(`${VUE_APP_LOCAL_SERVICE}/locals/${params.cityCode}`);
 
       commit('setLocalDetail', data);
+    },
+    async fetchNeighbors({ commit }, params) {
+      const { data } = await this.$axios.get(`${VUE_APP_LOCAL_SERVICE}/locals/${params.cityCode}/neighbors`);
+
+      commit('setNeighbors', data);
     },
     async createReview({ dispatch }, params) {
       try {
@@ -58,6 +67,9 @@ export default {
     },
     getLocalReview(state) {
       return state.localReview;
+    },
+    getNeighbors(state) {
+      return state.neighbors;
     },
 
   },

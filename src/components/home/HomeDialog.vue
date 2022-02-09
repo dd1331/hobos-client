@@ -7,7 +7,7 @@
         <v-img
           class="white--text align-center"
           height="200px"
-          src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+          :src="cityImage"
         >
           <div style="display:flex; justify-content:center; align-items: center;">
             <h1>{{localDetail.cityName}}</h1>
@@ -45,7 +45,7 @@
             <Visitor-Chart/>
           </v-tab-item>
           <v-tab-item style="padding:20px;" :transition="false">
-            <Image-List/>
+            <Image-List :images="localDetail.files"/>
           </v-tab-item>
           <v-tab-item style="padding:20px;" :transition="false">
             <Weather-Table/>
@@ -102,6 +102,13 @@ export default {
     },
   },
   computed: {
+    cityImage() {
+      if (!this.localDetail.files) return '';
+
+      const random5 = Math.floor(Math.random() * (5 - 0) + 0);
+
+      return this.localDetail.files[random5].url || 'https://cdn.vuetifyjs.com/images/cards/docks.jpg';
+    },
     localDetail() {
       return this.$store.getters['local/getLocalDetail'];
     },

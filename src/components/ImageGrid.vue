@@ -15,7 +15,7 @@
             <v-img
               class="m-pointer"
                height="200"
-              :style="`background-image:url(${item.thumbnail? item.thumbnail : '/Movement.png'});
+              :style="`background-image:url(${item.thumbnail? item.thumbnail : '/Hobo.png'});
                 background-size:cover; background-repeat:no-repeat;
                 background-position: center;;
                 `
