@@ -12,8 +12,12 @@ const translateMixins = {
           return '뉴스';
         case 'meetup':
           return '모임';
+        case 'fire':
+          return '파이어';
+        case 'investment':
+          return '투자';
         default:
-          return '잡담';
+          return '자유';
       }
     },
     topicToKorean(key) {
@@ -23,7 +27,7 @@ const translateMixins = {
         case 'plogging':
           return '플로깅';
         default:
-          return '잡담';
+          return '자유';
       }
     },
   },

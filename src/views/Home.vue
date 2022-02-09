@@ -8,9 +8,11 @@
       </h2>
     </div>
     <Post-List :posts="popularPosts" category="true"></Post-List>
-    <h2 class="grey--text text--darken-3 d-inline">
-      📈 트렌드
-    </h2>
+    <div class="mt-4">
+      <h2 class="grey--text text--darken-3 d-inline">
+        📈 트렌드
+      </h2>
+    </div>
     <v-container class="d-flex mb-3 pt-0">
       <div>
         <v-chip

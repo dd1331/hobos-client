@@ -29,10 +29,10 @@
         </v-tabs>
 
         <v-tabs-items v-model="tab">
-          <v-tab-item style="padding:20px;" :transition="false">
+          <v-tab-item v-if="false" style="padding:20px;" :transition="false">
             <Scores/>
           </v-tab-item>
-          <v-tab-item style="padding:20px;" :transition="false">
+          <v-tab-item v-if="false" style="padding:20px;" :transition="false">
             <DialogList :list="prosAndConsList"/>
           </v-tab-item>
           <v-tab-item style="padding:20px;" :transition="false">
@@ -99,8 +99,8 @@ export default {
       dialog: false,
       tab: null,
       items: [
-        { tab: '점수' },
-        { tab: '장단' },
+        // { tab: '점수' },
+        // { tab: '장단' },
         { tab: '사진' },
         { tab: '리뷰' },
       ],

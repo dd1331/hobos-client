@@ -48,9 +48,9 @@ export default {
       snackbar: false,
       message: '',
       posts: [
-        { emoji: '👩‍💻', title: 'Go hobo to local', subtitle: 'get some relax' },
-        { emoji: '👩‍🌾', title: '고흥에 가볼까', subtitle: '산으로 바다로' },
+        { emoji: '👩‍💻', title: 'Go hobo to local', subtitle: 'start new things' },
         { emoji: '🧐', title: 'meet people to get inspired', subtitle: 'they\'re wating for you' },
+        { emoji: '👩‍🌾', title: '고흥에 가볼까', subtitle: '조용한 바다가 있는 곳' },
         { emoji: '🏬', title: '부여로 가자', subtitle: '백마강이 있는 곳' },
       ],
 
