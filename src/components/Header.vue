@@ -16,9 +16,9 @@
           로그인
         </span>
         <div v-else>
-          <!-- <v-icon class="grey--text text--darken-1 mr-2" @click="routeTo('/user/profile')">
+          <v-icon class="grey--text text--darken-1 mr-2" @click="routeTo('/user/profile')">
             mdi-account-outline
-          </v-icon> -->
+          </v-icon>
           <span class="black--text m-pointer"  @click="logout">
             로그아웃
           </span>

@@ -7,21 +7,26 @@
           color="primary"
           size="70"
         >
-          <img v-if="true"
-            src="https://avatars0.githubusercontent.com/u/9064066?v=4&s=460"
-            alt="John"
+          <v-avatar
+            class="mt-1 m-pointer"
+            color="primary"
           >
-          <span v-else class="white--text headline">
-            {{user.userName.slice(0,1).toUpperCase()}}
-          </span>
+            <img v-if="user.avatar"
+              :src="user.avatar"
+              alt="avatar"
+            >
+            <span  class="white--text headline">
+              {{user.userName.slice(0,1).toUpperCase()}}
+            </span>
+          </v-avatar>
         </v-avatar>
         <div class="ma-4">
           <p>
             {{user.userName}}
           </p>
-          <p>
+          <!-- <p>
             {{user.phone}}
-          </p>
+          </p> -->
         </div>
       </div>
     </v-card>
@@ -52,7 +57,7 @@
           {{profile.dislikeSum}}개
         </v-container>
       </div>
-      <v-divider style="margin: 10px 0 10px 0"></v-divider>
+      <!-- <v-divider style="margin: 10px 0 10px 0"></v-divider>
       <div class="d-flex">
         <v-container>
           <p>
@@ -72,7 +77,7 @@
           </p>
           231
         </v-container>
-      </div>
+      </div> -->
     </v-card>
   </div>
 </template>

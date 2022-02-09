@@ -9,7 +9,7 @@
           dense
           @keyup.enter="search"
         ></v-text-field>
-      <v-btn @click="search" class="white--text py-2" height="40" color="red accent-2 " outlined>
+      <v-btn @click="search" class="white--text py-2" height="40" color="primary" outlined>
         검색
       </v-btn>
     </div>

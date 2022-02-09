@@ -24,14 +24,14 @@
               <div style="height:100%">
                 <div style="display:flex; align-items: center; height:20%">
                   <div style="margin-left:12px;">
-                    <h4 style="text-align:center; color:white; ">
+                    <h3 style="text-align:center; color:white; ">
                       {{index + 1}}
-                    </h4>
+                    </h3>
                   </div>
                   <div style="margin:auto; margin-right:12px;">
-                    <h4 style="text-align:center; color:white; ">
+                    <h3 style="text-align:center; color:white; ">
                       {{item.topRight}}
-                    </h4>
+                    </h3>
                   </div>
                 </div>
                 <div style="display:flex; justify-content: center; align-items: center; height:60%">
@@ -47,14 +47,14 @@
                 <div style="display:flex; height:20%; justify-content: center;
                   align-items: center;">
                   <div style="margin-left:12px;">
-                    <h4 style="text-align:center; color:white; ">
+                    <h3 style="text-align:center; color:white; ">
                       {{item.bottomLeft}}
-                    </h4>
+                    </h3>
                   </div>
                   <div style="margin:auto; margin-right:12px;">
-                    <h4 style="text-align:center; color:white; ">
+                    <h3 style="text-align:center; color:white; ">
                       {{item.bottomRight}}
-                    </h4>
+                    </h3>
                     </div>
                 </div>
               </div>
