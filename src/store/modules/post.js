@@ -4,6 +4,7 @@ export default {
   namespaced: true,
   state: () => ({
     posts: [],
+    homePosts: {},
     recommendedPosts: [],
     popularPosts: [],
     recentPosts: [],
@@ -15,6 +16,9 @@ export default {
   mutations: {
     setPosts(state, posts) {
       state.posts = posts;
+    },
+    setHomePosts(state, posts) {
+      state.homePosts = posts;
     },
     accumulatePosts(state, posts) {
       state.posts = [...state.posts, ...posts];
@@ -56,6 +60,22 @@ export default {
     async fetchCategorizedPosts({ commit }, payload) {
       const { data } = await this.$axios.get(`${VUE_APP_SERVER_HOST}/posts`, { params: payload });
       commit('setPosts', data);
+    },
+    async fetchHomePosts({ commit }) {
+      const payload = {
+        page: 1,
+        take: 5,
+      };
+      const freePosts = await this.$axios.get(`${VUE_APP_SERVER_HOST}/posts`, { params: { ...payload, category: 'free' } });
+      const meetupPosts = await this.$axios.get(`${VUE_APP_SERVER_HOST}/posts`, { params: { ...payload, category: 'meetup' } });
+      const investmentPost = await this.$axios.get(`${VUE_APP_SERVER_HOST}/posts`, { params: { ...payload, category: 'investment' } });
+      const firePosts = await this.$axios.get(`${VUE_APP_SERVER_HOST}/posts`, { params: { ...payload, category: 'fire' } });
+      commit('setHomePosts', {
+        free: freePosts.data,
+        meetup: meetupPosts.data,
+        investment: investmentPost.data,
+        fire: firePosts.data,
+      });
     },
     async fetchPost({ commit, dispatch }, postId) {
       const { data } = await this.$axios.get(`${VUE_APP_SERVER_HOST}/posts/${postId}`);
@@ -113,6 +133,9 @@ export default {
   getters: {
     getPosts(state) {
       return state.posts;
+    },
+    getHomePosts(state) {
+      return state.homePosts;
     },
     getRecommendedPost(state) {
       return state.recommendedPosts;

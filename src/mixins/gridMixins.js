@@ -7,6 +7,7 @@ const gridMixins = {
   methods: {
     format4cityGrid(city) {
       const random5 = Math.floor(Math.random() * (5 - 0) + 0);
+      const random100 = () => Math.floor(Math.random() * (100 - 0) + 0);
       const result = {
         id: city.cityCode,
         thumbnail: city.files[random5]?.url || thumbnails[random5],
@@ -16,17 +17,18 @@ const gridMixins = {
         bottomLeft: `온도: ${this.getTemperatureEmoji(city.temp || '-')}`,
         bottomRight: `${this.getWeatherEmoji(city.description) || '-'}`,
         scores: [
-          { icon: '⭐️', title: '평점', percentage: 55 },
-          { icon: '💰', title: '비용', percentage: 30 },
-          { icon: '🖥', title: '인터넷', percentage: 10 },
-          { icon: '☀️', title: '날씨', percentage: 90 },
-          { icon: '⏱', title: '시간', percentage: 5 },
+          { icon: '⭐️', title: '평점', percentage: random100() },
+          { icon: '💰', title: '월세', percentage: random100() },
+          // { icon: '🖥', title: '인터넷', percentage: 10 },
+          // { icon: '☀️', title: '날씨', percentage: 90 },
+          // { icon: '⏱', title: '시간', percentage: 5 },
         ],
       };
       return result;
     },
     format4cafeGrid(cafe) {
       const [provinceName, cityName] = cafe.address.split(' ');
+      const random100 = () => Math.floor(Math.random() * (100 - 0) + 0);
 
       return {
         id: cafe.id,
@@ -35,11 +37,11 @@ const gridMixins = {
         subtitle: cityName,
         topRight: this.formatProvinceName(provinceName),
         scores: [
-          { icon: '⭐️', title: '총점', percentage: 55 },
-          { icon: '💰', title: '비용', percentage: 30 },
-          { icon: '🖥', title: '인터넷', percentage: 10 },
-          { icon: '☀️', title: '소음', percentage: 90 },
-          { icon: '⏱', title: '코피스', percentage: 5 },
+          { icon: '⭐️', title: '평점', percentage: random100() },
+          { icon: '💰', title: '가격', percentage: random100() },
+          // { icon: '🖥', title: '인터넷', percentage: random100() },
+          // { icon: '☀️', title: '소음', percentage: random100() },
+          { icon: '⏱', title: '코피스', percentage: random100() },
         ],
       };
     },
@@ -74,6 +76,8 @@ const gridMixins = {
           return '🌥';
         case '약간의 구름이 낀 하늘':
           return '🌤';
+        case '연무':
+          return '😶‍🌫️';
         default:
           return description;
       }

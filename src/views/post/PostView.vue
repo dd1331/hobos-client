@@ -1,6 +1,7 @@
 <template>
   <div v-if="post && post.poster" class="post-view">
     <section>
+      <h4 class="m-pointer" @click="sendToList">{{titleToKorean(post.category)}}</h4>
       <h2>
         {{post.title}}
       </h2>
@@ -70,12 +71,13 @@
   </div>
 </template>
 <script>
-import dateMixins from '../../mixins/dateMixins';
-import CommentList from '../../components/CommentList';
-import OptionMenu from '../../components/OptionMenu';
+import dateMixins from '@/mixins/dateMixins';
+import translateMixins from '@/mixins/translateMixins';
+import CommentList from '@/components/CommentList';
+import OptionMenu from '@/components/OptionMenu';
 
 export default {
-  mixins: [dateMixins],
+  mixins: [dateMixins, translateMixins],
   components: { CommentList, OptionMenu },
   computed: {
     post() {
@@ -95,6 +97,11 @@ export default {
     },
   },
   methods: {
+    sendToList() {
+      if (this.$router.history.current.path === `/posts/list/${this.currentCategory.title}`) return;
+
+      this.$router.push(`/posts/list/${this.currentCategory.title}`);
+    },
     edit() {
       this.$router.push(`/posts/edit/${this.post.id}`);
     },

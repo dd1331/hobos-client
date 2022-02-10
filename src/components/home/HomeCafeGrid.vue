@@ -53,7 +53,10 @@ export default {
       return this.isMobile ? 4 : 3;
     },
     cafes() {
-      return this.$store.getters['cafe/getCafeRanking'].map((cafe) => this.format4cafeGrid(cafe));
+      const data = this.$store.getters['cafe/getCafeRanking']
+        .map((cafe) => this.format4cafeGrid(cafe));
+      if (this.isMobile) return data.slice(0, 6);
+      return data;
     },
   },
   async created() {
