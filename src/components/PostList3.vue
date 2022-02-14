@@ -20,7 +20,9 @@
               </p>
             </div>
             <div class="text-subtitle-2 subtitle">
-              <span class="mr-2" v-if="item.poster">{{item.poster.userName}}</span>
+              <span class="mr-2" v-if="item.poster && (type !== 'simple')">
+                {{item.poster.userName}}
+              </span>
               <span class="mr-2">{{formatDate(item.createdAt,{format:'MM/DD'})}}</span>
               <span class="mr-2">댓글 {{item.comments ? item.comments.length : 0}}</span>
               <span class="mr-2">조회 {{item.views}}</span>
@@ -42,7 +44,7 @@ import translateMixins from '../mixins/translateMixins';
 
 export default {
   mixins: [dateMixins, translateMixins],
-  props: ['posts', 'category'],
+  props: ['posts', 'category', 'type'],
   data: () => ({
   }),
 };

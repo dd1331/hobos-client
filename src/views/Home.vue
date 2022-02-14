@@ -13,7 +13,7 @@
           <h2 class="grey--text text--darken-3 d-inline">
             {{post.title}}
           </h2>
-          <Post-List :posts="post.post" :category="post.category"></Post-List>
+          <Post-List :posts="post.post" :category="post.category" type="simple"></Post-List>
       </div>
       </v-col>
     </v-row>
